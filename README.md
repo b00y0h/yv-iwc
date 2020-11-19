@@ -13,22 +13,26 @@ npm install --save @ux_bob/yv-iwc
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from "react";
+import { YouVisitIWC } from "@ux_bob/yv-iwc";
 
-import { useMyHook } from '@ux_bob/yv-iwc'
-
-const Example = () => {
-  const example = useMyHook()
+const App = () => {
   return (
-    <div>{example}</div>
-  )
-}
+    <div>
+      <YouVisitIWC
+        containerWidth="100%"
+        containerHeight="400px"
+        title="IWC Title"
+        institution="institution-id"
+        location="location-id"
+        showCode="true or blank"
+      />
+    </div>
+  );
+};
+export default App;
 ```
 
 ## License
 
 MIT © [b00y0h](https://github.com/b00y0h)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
