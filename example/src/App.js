@@ -1,12 +1,18 @@
-import React from 'react'
-import { useMyHook } from '@ux_bob/yv-iwc'
+import React from "react";
+import { YouVisitIWC } from "@ux_bob/yv-iwc";
 
 const App = () => {
-  const example = useMyHook()
   return (
     <div>
-      {example}
+      <YouVisitIWC
+        containerWidth="100%"
+        containerHeight="400px"
+        title="IWC Title"
+        institution="institution-id"
+        location="location-id"
+        showCode="true or blank"
+      />
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
