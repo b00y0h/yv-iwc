@@ -1,10 +1,43 @@
 /* eslint no-undef: 0 */
-
 import React, { useEffect } from "react";
 import { PrismCode } from "./prismcode";
 import useScript from "./useScript";
 
+const JsonLd = ({ data }) => (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+  />
+);
+
 const YouVisitIWC = (props) => {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: props.title,
+    description: props.description
+      ? props.description
+      : "Interactive Image Element",
+    thumbnailUrl: props.thumb ? props.thumb : "",
+    uploadDate: props.uploadDate
+      ? props.uploadDate
+      : "2020-03-31T08:00:00+08:00",
+    publisher: {
+      "@type": "Organization",
+      name: "EAB",
+      logo: {
+        "@type": "ImageObject",
+        url:
+          "https://attachment.eab.com/wp-content/uploads/2019/07/EAB-Logo-RGB.png",
+        width: 500,
+        height: 193,
+      },
+    },
+    contentUrl: "url of actual tour",
+    embedUrl: "url where the tour has been placed",
+    interactionCount: "locations.views",
+  };
+
   const YVSource = "https://www.youvisit.com/tour/Embed/js3";
   const status = useScript(YVSource);
 
@@ -54,7 +87,7 @@ const YouVisitIWC = (props) => {
   }
 
   return (
-    <div>
+    <>
       <div className="iwc" style={iwcstyle}>
         <a
           href="https://www.youvisit.com"
@@ -74,7 +107,8 @@ const YouVisitIWC = (props) => {
         </a>
       </div>
       {formattedCode}
-    </div>
+      <JsonLd data={data} />
+    </>
   );
 };
 
