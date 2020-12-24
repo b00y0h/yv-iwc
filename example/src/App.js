@@ -8,9 +8,9 @@ const App = () => {
         containerWidth="100%"
         containerHeight="400px"
         title="IWC Title"
-        institution="120207"
-        // location="location-id"
-        showCode="true"
+        institution="institution-id"
+        location="location-id"
+        showCode="true or blank"
       />
     </div>
   );
