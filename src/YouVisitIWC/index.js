@@ -59,10 +59,18 @@ const YouVisitIWC = (props) => {
     height: `${height}`,
   };
 
+  let stopid;
+  if (typeof props.dataStopid !== "undefined") {
+    stopid = `data-stopid="${props.dataStopid}"\n`;
+  } else {
+    stopid = "";
+  }
+  const dataType = props.dataType && `data-type="${props.dataType}"`;
+
   const codeString = `
 <div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
   <a href="https://www.youvisit.com"
-      className="virtualtour_embed"
+      class="virtualtour_embed"
       title="${props.title}"
       data-platform="v"
       data-link-type="${props.linkType}"
@@ -72,7 +80,9 @@ const YouVisitIWC = (props) => {
       data-loc="${props.location}"
       data-hover-width="${props.hoverWidth}"
       data-hover-height="${props.hoverHeight}"
-      data-type="${props.dataType}">
+      ${dataType}
+      ${stopid}
+      >
   Virtual Tour
   </a>
 </div>
@@ -101,7 +111,8 @@ const YouVisitIWC = (props) => {
           data-loc={props.location}
           data-hover-width={props.hoverWidth}
           data-hover-height={props.hoverHeight}
-          data-type={props.dataType}
+          dataType
+          stopid
         >
           Virtual Tour
         </a>

@@ -12,7 +12,7 @@
     "@ux_bob/yv-iwc": "file:.."
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HOST=local.dev.youvisit.com react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
