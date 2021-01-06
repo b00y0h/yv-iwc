@@ -43,7 +43,7 @@ const YouVisitIWC = (props) => {
 
   const width = props.containerWidth;
   const height = props.containerHeight;
-  // const type = props.dataType
+  // const type = props.type
 
   useEffect(() => {
     const yvObj = window.YVScript;
@@ -59,13 +59,13 @@ const YouVisitIWC = (props) => {
     height: `${height}`,
   };
 
-  let stopid;
-  if (typeof props.dataStopid !== "undefined") {
-    stopid = `data-stopid="${props.dataStopid}"\n`;
+  let stopId;
+  if (typeof props.stopId !== "undefined") {
+    stopId = `data-stopid="${props.stopId}"\n`;
   } else {
-    stopid = "";
+    stopId = "";
   }
-  const dataType = props.dataType && `data-type="${props.dataType}"`;
+  const type = props.type && `data-type="${props.type}"`;
 
   const codeString = `
 <div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
@@ -80,8 +80,8 @@ const YouVisitIWC = (props) => {
       data-loc="${props.location}"
       data-hover-width="${props.hoverWidth}"
       data-hover-height="${props.hoverHeight}"
-      ${dataType}
-      ${stopid}
+      ${type}
+      ${stopId}
       >
   Virtual Tour
   </a>
@@ -111,11 +111,32 @@ const YouVisitIWC = (props) => {
           data-loc={props.location}
           data-hover-width={props.hoverWidth}
           data-hover-height={props.hoverHeight}
-          dataType
-          stopid
+          data-load-stop-only={props.loadStopOnly}
+          data-stopid={props.stopId}
+          type
+          // stopId
         >
           Virtual Tour
         </a>
+        {/* <div className="iwc" style={iwcstyle}>
+          <a
+            href="https://www.youvisit.com"
+            className="virtualtour_embed"
+            title="George C. Falk Flight Center"
+            data-platform="v"
+            data-link-type="immersive"
+            data-inst="120207"
+            data-image-width="100%"
+            data-image-height="100%"
+            data-loc="142537"
+            data-hover-width="90%"
+            data-hover-height="70%"
+            data-type="inline-embed"
+            data-stopid="270826"
+          >
+            Virtual Tour
+          </a>
+        </div> */}
       </div>
       {formattedCode}
       <JsonLd data={data} />
@@ -130,10 +151,12 @@ YouVisitIWC.defaultProps = {
   containerWidth: "100%",
   title: "Launch Experience",
   linkType: "immersive",
-  dataType: "inline-embed",
+  type: "inline-embed",
   iwcWidth: "100%",
   iwcHeight: "100%",
   location: "",
   hoverWidth: "90%",
   hoverHeight: "70%",
+  loadStopOnly: "0",
+  stopId: "",
 };
