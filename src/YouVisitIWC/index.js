@@ -65,7 +65,7 @@ const YouVisitIWC = (props) => {
   } else {
     stopId = "";
   }
-  const type = props.type && `data-type="${props.type}"`;
+  const type = props.type && `data-type=${props.type}`;
 
   const codeString = `
 <div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
@@ -89,6 +89,48 @@ const YouVisitIWC = (props) => {
 <script async="async" defer="defer" src="https://www.youvisit.com/tour/Embed/js3"></script>
     `;
 
+  function IWCTag() {
+    return (
+      <a
+        href="https://www.youvisit.com"
+        className="virtualtour_embed"
+        data-platform="v"
+        data-type="inline-embed"
+        title={props.title}
+        data-link-type={props.linkType}
+        data-inst={props.institution}
+        data-image-width={props.iwcWidth}
+        data-image-height={props.iwcHeight}
+        data-loc={props.location}
+        data-hover-width={props.hoverWidth}
+        data-hover-height={props.hoverHeight}
+        stopId
+      >
+        Virtual Tour
+      </a>
+    );
+  }
+
+  function TourTag() {
+    return (
+      <a
+        href="https://www.youvisit.com"
+        className="virtualtour_embed"
+        title={props.title}
+        data-platform="v"
+        data-link-type={props.linkType}
+        data-inst={props.institution}
+        data-image-width={props.iwcWidth}
+        data-image-height={props.iwcHeight}
+        data-loc={props.location}
+        data-hover-width={props.hoverWidth}
+        data-hover-height={props.hoverHeight}
+      >
+        Virtual Tour
+      </a>
+    );
+  }
+
   let formattedCode;
   if (props.showCode === "true") {
     formattedCode = (
@@ -99,44 +141,8 @@ const YouVisitIWC = (props) => {
   return (
     <>
       <div className="iwc" style={iwcstyle}>
-        <a
-          href="https://www.youvisit.com"
-          className="virtualtour_embed"
-          title={props.title}
-          data-platform="v"
-          data-link-type={props.linkType}
-          data-inst={props.institution}
-          data-image-width={props.iwcWidth}
-          data-image-height={props.iwcHeight}
-          data-loc={props.location}
-          data-hover-width={props.hoverWidth}
-          data-hover-height={props.hoverHeight}
-          data-load-stop-only={props.loadStopOnly}
-          data-stopid={props.stopId}
-          type
-          // stopId
-        >
-          Virtual Tour
-        </a>
-        {/* <div className="iwc" style={iwcstyle}>
-          <a
-            href="https://www.youvisit.com"
-            className="virtualtour_embed"
-            title="George C. Falk Flight Center"
-            data-platform="v"
-            data-link-type="immersive"
-            data-inst="120207"
-            data-image-width="100%"
-            data-image-height="100%"
-            data-loc="142537"
-            data-hover-width="90%"
-            data-hover-height="70%"
-            data-type="inline-embed"
-            data-stopid="270826"
-          >
-            Virtual Tour
-          </a>
-        </div> */}
+        {props.type === "hover-panel" && <TourTag />}
+        {props.type === "inline-embed" && <IWCTag />}
       </div>
       {formattedCode}
       <JsonLd data={data} />
@@ -158,5 +164,5 @@ YouVisitIWC.defaultProps = {
   hoverWidth: "90%",
   hoverHeight: "70%",
   loadStopOnly: "0",
-  stopId: "",
+  experience_type: "iwc",
 };
