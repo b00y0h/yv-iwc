@@ -20,7 +20,7 @@
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "publish": "npm publish --access public --verbose"
+    "publish": "npm run build && npm publish --access public --verbose"
   },
   "peerDependencies": {
     "react": "^16.9.0"
