@@ -43,7 +43,6 @@ const YouVisitIWC = (props) => {
 
   const width = props.containerWidth;
   const height = props.containerHeight;
-  // const type = props.type
 
   useEffect(() => {
     const yvObj = window.YVScript;
@@ -59,77 +58,42 @@ const YouVisitIWC = (props) => {
     height: `${height}`,
   };
 
-  let stopId;
-  if (typeof props.stopId !== "undefined") {
-    stopId = `data-stopid="${props.stopId}"\n`;
-  } else {
-    stopId = "";
+  // sets up the correct anchor props
+  const anchorProps = {
+    href: "https://www.youvisit.com",
+    title: props.title,
+    "data-inst": props.institution,
+    "data-link-type": props.linkType,
+    "data-loc": props.location,
+    "data-platform": "v",
+    "data-type": props.type,
+    "data-stopid": props.stopId,
+    "data-hover-width": props.hoverWidth,
+    "data-hover-height": props.hoverHeight,
+    "data-image-width": props.iwcWidth,
+    "data-image-height": props.iwcHeight,
+  };
+  if (props.type === "hover-panel") {
+    delete anchorProps["data-type"];
   }
-  const type = props.type && `data-type=${props.type}`;
+  if (typeof props.stopId === "undefined") {
+    delete anchorProps["data-stopid"];
+  }
+  if (typeof props.location === "undefined" || props.location === null) {
+    delete anchorProps["data-loc"];
+  }
 
   const codeString = `
 <div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
-  <a href="https://www.youvisit.com"
-      class="virtualtour_embed"
-      title="${props.title}"
-      data-platform="v"
-      data-link-type="${props.linkType}"
-      data-inst="${props.institution}"
-      data-image-width="${props.iwcWidth}"
-      data-image-height="${props.iwcHeight}"
-      data-loc="${props.location}"
-      data-hover-width="${props.hoverWidth}"
-      data-hover-height="${props.hoverHeight}"
-      ${type}
-      ${stopId}
-      >
-  Virtual Tour
-  </a>
+<a class="virtualtour_embed"
+${Object.keys(anchorProps)
+  .map(function (key) {
+    return key + '="' + anchorProps[key] + '"\n';
+  })
+  .join("")}>Virtual Tour</a>
 </div>
 <script async="async" defer="defer" src="https://www.youvisit.com/tour/Embed/js3"></script>
     `;
-
-  function IWCTag() {
-    return (
-      <a
-        href="https://www.youvisit.com"
-        className="virtualtour_embed"
-        data-platform="v"
-        data-type="inline-embed"
-        title={props.title}
-        data-link-type={props.linkType}
-        data-inst={props.institution}
-        data-image-width={props.iwcWidth}
-        data-image-height={props.iwcHeight}
-        data-loc={props.location}
-        data-hover-width={props.hoverWidth}
-        data-hover-height={props.hoverHeight}
-        stopId
-      >
-        Virtual Tour
-      </a>
-    );
-  }
-
-  function TourTag() {
-    return (
-      <a
-        href="https://www.youvisit.com"
-        className="virtualtour_embed"
-        title={props.title}
-        data-platform="v"
-        data-link-type={props.linkType}
-        data-inst={props.institution}
-        data-image-width={props.iwcWidth}
-        data-image-height={props.iwcHeight}
-        data-loc={props.location}
-        data-hover-width={props.hoverWidth}
-        data-hover-height={props.hoverHeight}
-      >
-        Virtual Tour
-      </a>
-    );
-  }
 
   let formattedCode;
   if (props.showCode === "true") {
@@ -141,8 +105,9 @@ const YouVisitIWC = (props) => {
   return (
     <>
       <div className="iwc" style={iwcstyle}>
-        {props.type === "hover-panel" && <TourTag />}
-        {props.type === "inline-embed" && <IWCTag />}
+        <a className="virtualtour_embed" {...anchorProps}>
+          Virtual Tour
+        </a>
       </div>
       {formattedCode}
       <JsonLd data={data} />
@@ -160,7 +125,6 @@ YouVisitIWC.defaultProps = {
   type: "inline-embed",
   iwcWidth: "100%",
   iwcHeight: "100%",
-  location: "",
   hoverWidth: "90%",
   hoverHeight: "70%",
   loadStopOnly: "0",

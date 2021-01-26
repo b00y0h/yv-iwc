@@ -24,7 +24,6 @@ const App = () => {
         loadStopOnly="1"
         showCode="true"
         stopId="270825"
-        showCode="true"
       />
     </div>
   );
