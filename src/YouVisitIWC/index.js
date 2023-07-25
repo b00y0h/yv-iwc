@@ -1,7 +1,9 @@
 /* eslint no-undef: 0 */
 import React, { useEffect } from "react";
 import { PrismCode } from "./prismcode";
-import useScript from "./useScript";
+import useScript from "react-script-hook";
+// import useScript from './useScript';
+
 
 const JsonLd = ({ data }) => (
   <script
@@ -39,17 +41,26 @@ const YouVisitIWC = (props) => {
   };
 
   const YVSource = "https://www.youvisit.com/tour/Embed/js3";
-  const status = useScript(YVSource);
+  // const status = useScript(YVSource);
+  // const [loading, error] = useScript({ src: YVSource });
+
+  useScript({
+    src: YVSource,
+    onload: () => {
+       const yvObj = window.YVScript;
+       yvObj && yvObj.scanEmbeds();
+    }
+  });
 
   const width = props.containerWidth;
   const height = props.containerHeight;
 
-  useEffect(() => {
-    const yvObj = window.YVScript;
-    if (status === "ready") {
-      yvObj && yvObj.scanEmbeds();
-    }
-  });
+  // useEffect(() => {
+  //   const yvObj = window.YVScript;
+  //   if (status === "ready") {
+  //     yvObj && yvObj.scanEmbeds();
+  //   }
+  // });
 
   const iwcstyle = {
     // border: "5px solid pink",

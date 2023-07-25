@@ -5,11 +5,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@ux_bob/yv-iwc": "file:..",
     "prop-types": "^15.6.2",
     "react": "file:../node_modules/react",
-    "react-dom": "^16.9.0",
-    "react-scripts": "^3.0.1",
-    "@ux_bob/yv-iwc": "file:.."
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "HOST=local.dev.youvisit.com react-scripts start",
