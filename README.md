@@ -10,6 +10,11 @@
 npm install --save @ux_bob/yv-iwc
 ```
 
+## Test locally
+```bash
+npm link
+```
+
 ## Usage
 
 ```jsx

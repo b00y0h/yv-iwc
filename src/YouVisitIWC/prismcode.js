@@ -1,30 +1,16 @@
-import React from "react"
-import Prism from "prismjs"
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react'
+import Prism from 'prismjs'
+import 'prismjs/plugins/toolbar/prism-toolbar'
+import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard'
 
-export class PrismCode extends React.Component {
-  constructor(props) {
-    super(props)
-    this.ref = React.createRef()
-  }
-  componentDidMount() {
-    this.highlight()
-  }
-  componentDidUpdate() {
-    this.highlight()
-  }
-  highlight = () => {
-    if (this.ref && this.ref.current) {
-      Prism.highlightElement(this.ref.current)
-    }
-  }
-  render() {
-    const { code, plugins, language } = this.props
-    return (
-      <pre className={!plugins ? "" : plugins.join(" ")}>
-        <code ref={this.ref} className={`language-${language}`}>
-          {code.trim()}
-        </code>
-      </pre>
-    )
-  }
+export default function PrismCode({ code, plugins, language }) {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+  return (
+    <pre className={!plugins ? '' : plugins.join(' ')}>
+      <code className={`language-${language}`} data-prismjs-copy='Copy the HTML snippet!'>{code.trim()}</code>
+    </pre>
+  )
 }

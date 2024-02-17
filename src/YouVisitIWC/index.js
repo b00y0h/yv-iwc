@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint no-undef: 0 */
 import React from 'react'
-import { PrismCode } from './prismcode'
+import PrismCode from './prismcode'
 import useScript from 'react-script-hook'
 // import useScript from './useScript';
 
@@ -12,6 +13,7 @@ const JsonLd = ({ data }) => (
 )
 
 const YouVisitIWC = (props) => {
+  const { containerHeight, containerWidth } = props
   const data = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
@@ -51,8 +53,15 @@ const YouVisitIWC = (props) => {
     }
   })
 
-  const width = props.containerWidth
-  const height = props.containerHeight
+  const width = containerWidth
+  const height = containerHeight
+
+  // useEffect(() => {
+  //   const yvObj = window.YVScript;
+  //   if (status === "ready") {
+  //     yvObj && yvObj.scanEmbeds();
+  //   }
+  // });
 
   const iwcstyle = {
     // border: "5px solid pink",
@@ -86,22 +95,29 @@ const YouVisitIWC = (props) => {
     delete anchorProps['data-loc']
   }
 
-  const codeString = `
-<div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
-<a class="virtualtour_embed"
-${Object.keys(anchorProps)
-    .map(function (key) {
-      return key + '="' + anchorProps[key] + '"\n'
-    })
-    .join('')}>Virtual Tour</a>
+  const codeString = `<div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
+  <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/?data-platform=v&data-link-type=immersive&data-inst=${props.institution}&data-image-width=100%&data-image-height=100%&data-loc=${props.location}">Launch Experience</a>
 </div>
-<script async="async" defer="defer" src="https://www.youvisit.com/tour/Embed/js3"></script>
-    `
+  `
 
   let formattedCode
-  if (props.showCode === 'true') {
+  if (props.showCode) {
     formattedCode = (
-      <PrismCode code={codeString} language='html' plugins={['line-numbers']} />
+      <>
+        <h3>Place the HTML below anywhere on your page to display your IWC.</h3>
+        <PrismCode code={codeString} language='html' plugins={['line-numbers']} />
+      </>
+    )
+  }
+
+  const codeString2 = `<script async="async" defer="defer" src="https://www.youvisit.com/tour/Embed/js3"></script>`
+  let secondFormattedCode
+  if (props.showCode) {
+    secondFormattedCode = (
+      <>
+        <h3>Place the script below anywhere on the same page as HTML above:</h3>
+        <PrismCode code={codeString2} language='html' plugins={['line-numbers']} />
+      </>
     )
   }
 
@@ -113,6 +129,7 @@ ${Object.keys(anchorProps)
         </a>
       </div>
       {formattedCode}
+      {secondFormattedCode}
       <JsonLd data={data} />
     </>
   )
