@@ -12,13 +12,15 @@ npm install --save @ux_bob/yv-iwc
 
 ## Test locally
 
-Run `yarn start` in this folder to watch for and build changes.
+Run `npm run start` in this folder to watch for and build changes.
 
-`cd` into `testing` directory and run `npm run start` to start a react app that has the `YouVisitIWC` component. To view changes you'll need to `yarn build` in the parent folder (this folder).
+`cd` into `testing` directory and run `npm run start` to start a react app that has the `YouVisitIWC` component.
 
 Go to `http://local.dev.youvisit.com:3000/` to see the IWC on a page.
 
 # Building and pushing to NPM
+
+Run `npm run publishToNpm`
 
 ## Usage
 
@@ -33,8 +35,8 @@ const App = () => {
         containerWidth="100%"
         containerHeight="400px"
         title="IWC Title"
-        institution="institution-id"
-        location="location-id"
+        institution={institutionId}
+        location={locationId}
         showCode="true or blank"
       />
     </div>
