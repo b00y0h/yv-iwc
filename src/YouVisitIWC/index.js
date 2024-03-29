@@ -2,8 +2,12 @@
 /* eslint no-undef: 0 */
 import React from 'react'
 import PrismCode from './prismcode'
+import PropTypes from 'prop-types'
 import useScript from 'react-script-hook'
-// import useScript from './useScript';
+
+const YVSource = 'https://www.youvisit.com/tour/Embed/js3'
+const defaultDescription = 'Interactive Image Element'
+const defaultUploadDate = '2020-03-31T08:00:00+08:00'
 
 const JsonLd = ({ data }) => (
   <script
@@ -12,19 +16,36 @@ const JsonLd = ({ data }) => (
   />
 )
 
-const YouVisitIWC = (props) => {
-  const { containerHeight, containerWidth } = props
-  const data = {
+JsonLd.propTypes = {
+  data: PropTypes.object.isRequired
+}
+
+const YouVisitIWC = ({
+  containerHeight,
+  containerWidth,
+  title,
+  description = defaultDescription,
+  thumb,
+  uploadDate = defaultUploadDate,
+  institution,
+  linkType,
+  location,
+  type,
+  stopId,
+  hoverWidth,
+  hoverHeight,
+  iwcWidth,
+  iwcHeight,
+  showCode,
+  ...otherProps
+}) => {
+  const jsonLdData = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: props.title,
-    description: props.description
-      ? props.description
-      : 'Interactive Image Element',
-    thumbnailUrl: props.thumb ? props.thumb : '',
-    uploadDate: props.uploadDate
-      ? props.uploadDate
-      : '2020-03-31T08:00:00+08:00',
+    name: title,
+    description: description,
+    thumbnailUrl: thumb,
+    uploadDate: uploadDate,
     publisher: {
       '@type': 'Organization',
       name: 'EAB',
@@ -41,10 +62,6 @@ const YouVisitIWC = (props) => {
     interactionCount: 'locations.views'
   }
 
-  const YVSource = 'https://www.youvisit.com/tour/Embed/js3'
-  // const status = useScript(YVSource);
-  // const [loading, error] = useScript({ src: YVSource });
-
   useScript({
     src: YVSource,
     onload: () => {
@@ -56,70 +73,46 @@ const YouVisitIWC = (props) => {
   const width = containerWidth
   const height = containerHeight
 
-  // useEffect(() => {
-  //   const yvObj = window.YVScript;
-  //   if (status === "ready") {
-  //     yvObj && yvObj.scanEmbeds();
-  //   }
-  // });
-
   const iwcstyle = {
-    // border: "5px solid pink",
     display: 'block',
     width: `${width}`,
     height: `${height}`
   }
 
   // sets up the correct anchor props
-  const anchorProps = {
-    href: 'https://www.youvisit.com',
-    title: props.title,
-    'data-inst': props.institution,
-    'data-link-type': props.linkType,
-    'data-loc': props.location,
-    'data-platform': 'v',
-    'data-type': props.type,
-    'data-stopid': props.stopId,
-    'data-hover-width': props.hoverWidth,
-    'data-hover-height': props.hoverHeight,
-    'data-image-width': props.iwcWidth,
-    'data-image-height': props.iwcHeight
-  }
-  if (props.type === 'hover-panel') {
-    delete anchorProps['data-type']
-  }
-  if (typeof props.stopId === 'undefined') {
-    delete anchorProps['data-stopid']
-  }
-  if (typeof props.location === 'undefined' || props.location === null) {
-    delete anchorProps['data-loc']
+  const anchorProps = Object.fromEntries(
+    Object.entries({
+      href: 'https://www.youvisit.com',
+      title: title,
+      'data-inst': institution,
+      'data-link-type': linkType,
+      'data-loc': location,
+      'data-platform': 'v',
+      'data-type': type,
+      'data-stopid': stopId,
+      'data-hover-width': hoverWidth,
+      'data-hover-height': hoverHeight,
+      'data-image-width': iwcWidth,
+      'data-image-height': iwcHeight
+    }).filter(([key, value]) => value !== undefined)
+  )
+  if (type !== 'hover-panel') {
+    anchorProps['data-type'] = type
   }
 
-  const codeString = `<div style="height: ${props.containerHeight}; width: ${props.containerWidth}">
-  <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/?data-platform=v&data-link-type=immersive&data-inst=${props.institution}&data-image-width=100%&data-image-height=100%&data-loc=${props.location}">Launch Experience</a>
-</div>
+  // Generate the data attributes string from anchorProps
+  const dataAttributesString = Object.entries(anchorProps)
+    .filter(([key]) => key.startsWith('data-')) // Only include data-* properties
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&')
+
+  const codeString = `
+    <div style="height: ${containerHeight}; width: ${containerWidth}">
+      <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/?${dataAttributesString}">Virtual Tour</a>
+    </div>
   `
 
-  let formattedCode
-  if (props.showCode) {
-    formattedCode = (
-      <>
-        <h3>Place the HTML below anywhere on your page to display your IWC.</h3>
-        <PrismCode code={codeString} language='html' plugins={['line-numbers']} />
-      </>
-    )
-  }
-
   const codeString2 = `<script async="async" defer="defer" src="https://www.youvisit.com/tour/Embed/js3"></script>`
-  let secondFormattedCode
-  if (props.showCode) {
-    secondFormattedCode = (
-      <>
-        <h3>Place the script below anywhere on the same page as HTML above:</h3>
-        <PrismCode code={codeString2} language='html' plugins={['line-numbers']} />
-      </>
-    )
-  }
 
   return (
     <>
@@ -128,14 +121,39 @@ const YouVisitIWC = (props) => {
           Virtual Tour
         </a>
       </div>
-      {formattedCode}
-      {secondFormattedCode}
-      <JsonLd data={data} />
+      {showCode && (
+        <>
+          <h3>Place the HTML below anywhere on your page to display your IWC.</h3>
+          <PrismCode code={codeString} language='html' plugins={['line-numbers']} />
+          <h3>Place the script below anywhere on the same page as HTML above:</h3>
+          <PrismCode code={codeString2} language='html' plugins={['line-numbers']} />
+        </>
+      )}
+      <JsonLd data={jsonLdData} />
     </>
   )
 }
 
 export default YouVisitIWC
+
+YouVisitIWC.propTypes = {
+  containerHeight: PropTypes.string,
+  containerWidth: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  thumb: PropTypes.string,
+  uploadDate: PropTypes.string,
+  linkType: PropTypes.string,
+  institution: PropTypes.number.isRequired,
+  location: PropTypes.number.isRequired,
+  type: PropTypes.string,
+  stopId: PropTypes.string,
+  hoverWidth: PropTypes.string,
+  hoverHeight: PropTypes.string,
+  iwcWidth: PropTypes.string,
+  iwcHeight: PropTypes.string,
+  showCode: PropTypes.bool
+}
 
 YouVisitIWC.defaultProps = {
   containerHeight: '300px',

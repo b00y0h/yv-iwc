@@ -11,9 +11,14 @@ npm install --save @ux_bob/yv-iwc
 ```
 
 ## Test locally
-```bash
-npm link
-```
+
+Run `yarn start` in this folder to watch for and build changes.
+
+`cd` into `testing` directory and run `npm run start` to start a react app that has the `YouVisitIWC` component. To view changes you'll need to `yarn build` in the parent folder (this folder).
+
+Go to `http://local.dev.youvisit.com:3000/` to see the IWC on a page.
+
+# Building and pushing to NPM
 
 ## Usage
 

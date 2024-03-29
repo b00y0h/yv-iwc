@@ -1,6 +1,6 @@
 {
   "name": "@ux_bob/yv-iwc",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "React component for YouVisit IWC",
   "author": "b00y0h",
   "license": "MIT",
@@ -21,8 +21,9 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build",
-    "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "predeploy": "cd testing && npm install && npm run build",
+    "deploy": "gh-pages -d testing/build",
+    "publishToNpm": "npm publish --access public"
   },
   "peerDependencies": {
     "react": "^18.2.0"
@@ -72,6 +73,7 @@
   },
   "dependencies": {
     "prismjs": "^1.22.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-script-hook": "^1.7.0",
     "react-syntax-highlighter": "^15.5.0"
