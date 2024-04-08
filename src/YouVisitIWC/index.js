@@ -106,9 +106,41 @@ const YouVisitIWC = ({
     .map(([key, value]) => `${key}=${value}`)
     .join('&')
 
+  // if IWC script fails to load due to adblockers
+  const generateButtonAttributes = (props) => {
+    const { style, onMouseOver, onMouseOut, target } = props;
+
+    // Convert style object to a string
+    const styleString = Object.entries(style)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join('; ');
+
+    // Construct attribute string
+    let attributes = `style="${styleString}"`;
+    if (onMouseOver) attributes += ` onMouseOver="${onMouseOver}"`;
+    if (onMouseOut) attributes += ` onMouseOut="${onMouseOut}"`;
+    if (target) attributes += ` target="${target}"`;
+
+    return attributes;
+  };
+
+  const buttonStylesProps = {
+    style: {
+      display: 'inline-block',
+      background: '#0072ce',
+      borderRadius: '0.3em',
+      color: 'white',
+      padding: '0.8em 1.5em',
+      margin: '0 auto'
+    },
+    onMouseOver: "this.style.backgroundColor = '#005aa7'",
+    onMouseOut: "this.style.backgroundColor = '#0072ce'",
+    target: '_blank'
+  }
+
   const codeString = `
     <div style="height: ${containerHeight}; width: ${containerWidth}">
-      <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/?${dataAttributesString}">Virtual Tour</a>
+      <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/?${dataAttributesString}" ${generateButtonAttributes(buttonStylesProps)} >Launch Interactive Web Content Experience</a>
     </div>
   `
 
@@ -117,8 +149,10 @@ const YouVisitIWC = ({
   return (
     <>
       <div className='iwc' style={iwcstyle}>
-        <a className='virtualtour_embed' {...anchorProps}>
-          Virtual Tour
+        <a className='virtualtour_embed' {...anchorProps} {...buttonStylesProps} >
+          Launch
+          Interactive Web Content
+          Experience
         </a>
       </div>
       {showCode && (
