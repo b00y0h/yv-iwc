@@ -53,6 +53,7 @@
     "@rollup/plugin-url": "^8.0.2",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.14.1",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

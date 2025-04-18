@@ -87,6 +87,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
+      '@types/node':
+        specifier: ^22.14.1
+        version: 22.14.1
       '@types/prismjs':
         specifier: ^1.26.3
         version: 1.26.5

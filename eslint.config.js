@@ -16,6 +16,10 @@ const typescriptConfig = {
       },
       project: './tsconfig.json',
     },
+    globals: {
+      window: 'readonly',
+      document: 'readonly',
+    },
   },
   plugins: {
     '@typescript-eslint': typescript,
@@ -31,6 +35,12 @@ const typescriptConfig = {
 
 const jsConfig = {
   files: ['**/*.{js,jsx}'],
+  languageOptions: {
+    globals: {
+      window: 'readonly',
+      document: 'readonly',
+    },
+  },
   plugins: {
     prettier: prettier,
   },
