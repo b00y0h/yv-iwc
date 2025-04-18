@@ -1,3 +1,3 @@
-import YouVisitIWC from "./YouVisitIWC";
+import YouVisitIWC from './YouVisitIWC'
 
-export { YouVisitIWC };
+export { YouVisitIWC }
