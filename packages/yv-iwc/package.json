@@ -1,6 +1,6 @@
 {
   "name": "@ux_bob/yv-iwc",
-  "version": "2.0.1",
+  "version": "2.0.5",
   "type": "module",
   "main": "dist/yv-iwc.umd.js",
   "module": "dist/yv-iwc.es.js",
