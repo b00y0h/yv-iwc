@@ -1,10 +1,10 @@
 {
   "name": "@ux_bob/yv-iwc",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "main": "dist/yv-iwc.umd.js",
   "module": "dist/yv-iwc.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -14,9 +14,11 @@
       "require": "./dist/yv-iwc.umd.js"
     }
   },
+  "sideEffects": false,
   "scripts": {
     "dev": "vite",
-    "build": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types --project tsconfig.json",
+    "build": "pnpm build:types && rollup -c",
     "build:watch": "rollup -c -w",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -34,6 +36,7 @@
     "@types/hast": "^3.0.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/react-syntax-highlighter": "^15.5.11",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.22.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -52,7 +55,6 @@
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
-    "react-syntax-highlighter": "^15.5.0",
-    "@types/react-syntax-highlighter": "^15.5.11"
+    "react-syntax-highlighter": "^15.5.0"
   }
 }
