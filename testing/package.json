@@ -2,32 +2,26 @@
   "name": "testing",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@ux_bob/yv-iwc": "file:..",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "HOST=local.dev.youvisit.com react-scripts start",
-    "build": "react-scripts build"
+    "dev": "next dev -H local.dev.youvisit.com",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.3.1",
+    "@ux_bob/yv-iwc": "workspace:*"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
   }
 }
