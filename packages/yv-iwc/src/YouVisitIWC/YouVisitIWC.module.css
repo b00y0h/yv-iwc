@@ -1,0 +1,70 @@
+.codeSnippetContainer {
+  width: 100%;
+  position: relative;
+}
+
+.codeSnippetContainer pre {
+  margin: 1rem 0;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  width: 100%;
+  position: relative;
+}
+
+.codeSnippetContainer code {
+  display: block;
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: pre;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.copyButtonContainer {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+
+.copyButton {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  display: none;
+  cursor: pointer;
+}
+
+.container:hover .copyButton {
+  display: block;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.iconSuccess {
+  transform: scale(1.1);
+  color: #22c55e;
+}
+
+.button {
+  font-size: 0.875rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}

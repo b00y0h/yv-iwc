@@ -1,0 +1,83 @@
+/* Light theme */
+:root {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-bracket: #24292f;
+  --color-prettylights-syntax-tag: #24292f;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-prettylights-syntax-comment: #8b949e;
+    --color-prettylights-syntax-constant: #79c0ff;
+    --color-prettylights-syntax-entity: #d2a8ff;
+    --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+    --color-prettylights-syntax-entity-tag: #7ee787;
+    --color-prettylights-syntax-keyword: #ff7b72;
+    --color-prettylights-syntax-string: #a5d6ff;
+    --color-prettylights-syntax-variable: #ffa657;
+    --color-prettylights-syntax-bracket: #c9d1d9;
+    --color-prettylights-syntax-tag: #7ee787;
+  }
+}
+
+pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+code {
+  white-space: pre-wrap !important;
+  word-wrap: break-word;
+}
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    background-color: #161b22;
+  }
+}
+
+.pl-c {
+  color: var(--color-prettylights-syntax-comment);
+}
+.pl-c1 {
+  color: var(--color-prettylights-syntax-constant);
+}
+.pl-e {
+  color: var(--color-prettylights-syntax-entity);
+}
+.pl-s {
+  color: var(--color-prettylights-syntax-string);
+}
+.pl-k {
+  color: var(--color-prettylights-syntax-keyword);
+}
+.pl-en {
+  color: var(--color-prettylights-syntax-entity-tag);
+}
+.pl-smi {
+  color: var(--color-prettylights-syntax-variable);
+}
+.pl-ent {
+  color: var(--color-prettylights-syntax-entity-tag);
+}
+.pl-bu {
+  color: var(--color-prettylights-syntax-bracket);
+}
+.pl-ii {
+  color: var(--color-prettylights-syntax-tag);
+}
