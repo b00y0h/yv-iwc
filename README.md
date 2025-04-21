@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/@ux_bob/yv-iwc.svg)](https://www.npmjs.com/package/@ux_bob/yv-iwc) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Install from NPM
 
 ```bash
 npm install --save @ux_bob/yv-iwc
@@ -12,21 +12,23 @@ npm install --save @ux_bob/yv-iwc
 
 ## Test locally
 
-Run `npm run start` in this folder to watch for and build changes.
+Run `pnpm dev` in this folder to watch for and build changes.
 
 `cd` into `testing` directory and run `npm run start` to start a react app that has the `YouVisitIWC` component.
 
-Go to `http://local.dev.youvisit.com:3000/` to see the IWC on a page.
+or go to your local project and run `pnpm link --global` in this folder to create the link and then `pnpm link --global @ux_bob/yv-iwc` in your other project to use that link.
 
-# Building and pushing to NPM
+<!-- Go to `http://local.dev.youvisit.com:3000/` to see the IWC on a page. -->
+
+## Building and pushing to NPM
 
 Run `npm run publishToNpm`
 
 ## Usage
 
 ```jsx
-import React from "react";
-import { YouVisitIWC } from "@ux_bob/yv-iwc";
+import React from 'react'
+import { YouVisitIWC } from '@ux_bob/yv-iwc'
 
 const App = () => {
   return (
@@ -40,9 +42,9 @@ const App = () => {
         showCode="true or blank"
       />
     </div>
-  );
-};
-export default App;
+  )
+}
+export default App
 ```
 
 ## License

@@ -1,88 +1,21 @@
 {
-  "name": "@ux_bob/yv-iwc",
-  "version": "1.1.21",
-  "description": "React component for YouVisit IWC",
-  "author": "b00y0h",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/b00y0h/yv-iwc.git"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
-  },
+  "name": "iwc-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "testing"
+  ],
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "prepare": "npm run build",
-    "predeploy": "cd testing && pnpm install && pnpm run build",
-    "deploy": "gh-pages -d testing/build",
-    "publishToNpm": "pnpm publish --access public",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix"
-  },
-  "peerDependencies": {
-    "react": "^19.0.0"
+    "dev:lib": "pnpm --filter @ux_bob/yv-iwc build:watch",
+    "dev:vite": "pnpm --filter @ux_bob/yv-iwc dev",
+    "dev:test": "pnpm --filter testing dev",
+    "dev:all": "concurrently -k -n ROLLUP,VITE,APP -c green,cyan,magenta \"pnpm dev:lib\" \"pnpm dev:vite\" \"pnpm dev:test\""
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
-    "@babel/eslint-parser": "^7.23.10",
-    "@babel/plugin-external-helpers": "^7.24.0",
-    "@babel/plugin-transform-class-properties": "^7.24.0",
-    "@babel/plugin-transform-nullish-coalescing-operator": "^7.24.0",
-    "@babel/plugin-transform-numeric-separator": "^7.24.0",
-    "@babel/plugin-transform-optional-chaining": "^7.24.0",
-    "@babel/plugin-transform-private-methods": "^7.24.0",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.0",
-    "@babel/preset-env": "^7.24.0",
-    "@babel/preset-react": "^7.24.0",
-    "@eslint/js": "^9.24.0",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.2",
-    "@rollup/plugin-url": "^8.0.2",
-    "@testing-library/react-hooks": "^8.0.1",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.14.1",
-    "@types/prismjs": "^1.26.3",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.30.1",
-    "@typescript-eslint/parser": "^8.30.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.17.0",
-    "eslint-plugin-prettier": "^5.2.6",
-    "eslint-plugin-promise": "^7.2.1",
-    "eslint-plugin-react": "^7.34.0",
-    "gh-pages": "^6.1.1",
-    "prettier": "^3.2.5",
-    "react-scripts": "^5.0.1",
-    "react-test-renderer": "^19.0.0",
-    "rollup": "^4.12.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "prismjs": "^1.29.0",
-    "prop-types": "^15.8.1",
-    "react": "^19.0.0",
-    "react-script-hook": "^1.7.2",
-    "react-syntax-highlighter": "^15.5.0"
-  },
-  "type": "module"
+    "concurrently": "^9.1.2",
+    "@typescript-eslint/eslint-plugin": "^5",
+    "@typescript-eslint/parser": "^5",
+    "@yv/eslint-config-core": "^5",
+    "typescript": "^5"
+  }
 }
