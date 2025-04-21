@@ -6,6 +6,7 @@ const typescript = require('@rollup/plugin-typescript')
 const postcss = require('rollup-plugin-postcss')
 const babel = require('@rollup/plugin-babel').babel
 const pkg = require('./package.json')
+const json = require('@rollup/plugin-json')
 
 module.exports = {
   input: 'src/index.ts',
@@ -26,6 +27,7 @@ module.exports = {
     postcss(),
     resolve(),
     commonjs(),
+    json(),
     typescript({
       tsconfig: './tsconfig.json',
       declaration: true,
