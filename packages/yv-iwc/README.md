@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# YV IWC React Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A React component for embedding YouVisit Interactive Web Component (IWC)
 
-Currently, two official plugins are available:
+[![NPM](https://img.shields.io/npm/v/@ux_bob/yv-iwc.svg)](https://www.npmjs.com/package/@ux_bob/yv-iwc)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+You can install the package using npm or pnpm:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install @ux_bob/yv-iwc
+# or
+pnpm add @ux_bob/yv-iwc
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```jsx
+import React from 'react'
+import { YouVisitIWC } from '@ux_bob/yv-iwc'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+const App = () => {
+  return (
+    <YouVisitIWC
+      containerWidth="100%"
+      containerHeight="400px"
+      title="Campus Tour"
+      institution="your-institution-id"
+      location="your-location-id"
+      showCode={true}
+    />
+  )
+}
+
+export default App
 ```
+
+## Props
+
+| Prop              | Type    | Required | Description                                           |
+| ----------------- | ------- | -------- | ----------------------------------------------------- |
+| `containerWidth`  | string  | Yes      | Width of the IWC container (e.g., "100%", "800px")    |
+| `containerHeight` | string  | Yes      | Height of the IWC container (e.g., "400px")           |
+| `title`           | string  | Yes      | Title of the IWC experience                           |
+| `institution`     | string  | Yes      | Institution ID for the YouVisit experience            |
+| `location`        | string  | Yes      | Location ID for the YouVisit experience               |
+| `showCode`        | boolean | No       | Whether to display the embed code (defaults to false) |
+
+## Development
+
+To develop and test the component locally:
+
+1. Run `pnpm dev` in the package directory to watch for and build changes
+2. Navigate to the `testing` directory and run `pnpm start` to start a test React app
+
+### Local Testing in Another Project
+
+To test the component in another project locally:
+
+1. In this package directory, run: `pnpm link --global`
+2. In your test project, run: `pnpm link --global @ux_bob/yv-iwc`
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT © [b00y0h](https://github.com/b00y0h)
