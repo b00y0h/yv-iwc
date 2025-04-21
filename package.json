@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
-    "@typescript-eslint/eslint-plugin": "^5",
-    "@typescript-eslint/parser": "^5",
-    "@yv/eslint-config-core": "^5",
-    "typescript": "^5"
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-config": "^5.62.0",
+    "typescript": "^5.0.4"
   }
 }
