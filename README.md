@@ -56,22 +56,15 @@ This repository contains both the main package and a Next.js testing app to vali
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run development build with watch mode
-npm run dev
+pnpm run dev
 
 # Build the package
-npm run build
+pnpm run build
 ```
 
 ### Testing App
 
-The `testing` directory contains a Next.js app that uses the package locally for development and testing purposes.
-
-```bash
-# Run the test app
-npm run dev:test
-```
-
-This will start the Next.js development server with the local version of the package.
+TBD
