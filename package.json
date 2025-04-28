@@ -15,7 +15,8 @@
     "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom --sourcemap --clean --out-dir dist",
     "lint": "tsc",
     "ci": "pnpm run lint && pnpm run test && pnpm run build",
-    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
+    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish",
+    "version": "changeset version"
   },
   "dependencies": {
     "react": "^18.0.0 || ^19.0.0",
