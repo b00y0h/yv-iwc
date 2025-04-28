@@ -7,18 +7,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      name: 'MyLib',
-      fileName: (format: unknown) => `my-lib.${format}.js`,
-    },
-    rollupOptions: {
-      // Externalize deps that shouldn't be bundled
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-      },
+      name: 'yvIWC',
+      fileName: (format: unknown) => `yv-iwc.${format}.js`,
     },
   },
   optimizeDeps: {
