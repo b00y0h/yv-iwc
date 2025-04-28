@@ -8,15 +8,13 @@ import {
   generateDataAttributesString,
 } from './utils'
 import { useScript } from '../hooks/useScript'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import markup from 'react-syntax-highlighter/dist/cjs/languages/prism/markup'
+import SyntaxHighlighter from 'react-syntax-highlighter'
 import { coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import CopyToClipboard from './components/copy-to-clipboard'
 import styles from './YouVisitIWC.module.css'
 
-SyntaxHighlighter.registerLanguage('html', markup)
-
-export const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
+// Move language registration inside the component
+const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
   containerHeight = '300px',
   containerWidth = '100%',
   title = 'Launch Experience',
@@ -137,3 +135,5 @@ ${dataAttributesString}">
     </>
   )
 }
+
+export default YouVisitIWC

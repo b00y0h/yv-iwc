@@ -1,6 +1,6 @@
 'use client'
 // import { YouVisitIWC } from '@ux_bob/yv-iwc'
-import { YouVisitIWC } from '../../../../packages/yv-iwc/src'
+import { YouVisitIWC } from '../../../../../dist/index.js'
 
 export default function PageTwo() {
   return (
