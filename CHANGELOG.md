@@ -1,5 +1,11 @@
 # @ux_bob/yv-iwc
 
+## 2.0.10
+
+### Patch Changes
+
+- update npmignore file
+
 ## 2.0.9
 
 ### Patch Changes

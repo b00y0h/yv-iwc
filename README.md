@@ -68,3 +68,29 @@ pnpm run build
 ### Testing App
 
 TBD
+
+## Deployment
+
+This package uses [Changesets](https://github.com/changesets/changesets) for versioning and publishing. To release a new version:
+
+1. Make your changes and commit them
+2. Create a new changeset:
+
+   ```bash
+   pnpm changeset
+   ```
+
+3. Follow the prompts to:
+   - Select the type of change (patch, minor, or major)
+   - Provide a description of the changes
+   - Confirm your choices
+4. Commit the generated changeset file
+5. Push your changes to the main branch
+
+The GitHub Actions workflow will automatically:
+
+- Create a Release PR if there are any changesets to process
+- When the PR is merged, it will:
+  - Update the package version
+  - Generate/update the changelog
+  - Publish to npm
