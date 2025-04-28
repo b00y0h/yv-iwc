@@ -1,6 +1,6 @@
 {
   "name": "@ux_bob/yv-iwc",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "type": "module",
   "main": "dist/yv-iwc.umd.js",
   "module": "dist/yv-iwc.es.js",
@@ -16,16 +16,12 @@
     }
   },
   "sideEffects": false,
-  "workspaces": [
-    "testing"
-  ],
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types --project tsconfig.json",
     "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom --sourcemap --clean --out-dir dist",
     "lint": "tsc",
-    "dev:test": "cd testing && npm run dev"
+    "ci": "pnpm run lint && pnpm run test && pnpm run build"
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
