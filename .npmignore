@@ -5,4 +5,11 @@ dist
 .prettierrc
 webpack.config.js
 /src
-/example
+/testing
+/examples
+*.test.*
+*.spec.*
+tsconfig.*
+vite.config.ts
+.eslintrc*
+eslint.config.*

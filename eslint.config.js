@@ -1,60 +1,28 @@
 import js from '@eslint/js'
-import typescript from '@typescript-eslint/eslint-plugin'
-import typescriptParser from '@typescript-eslint/parser'
-import prettier from 'eslint-plugin-prettier'
-import eslintConfigPrettier from 'eslint-config-prettier'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
 
-const typescriptConfig = {
-  files: ['**/*.{ts,tsx}'],
-  languageOptions: {
-    parser: typescriptParser,
-    parserOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
-      ecmaFeatures: {
-        jsx: true,
-      },
-      project: './tsconfig.json',
-    },
-    globals: {
-      window: 'readonly',
-      document: 'readonly',
-    },
-  },
-  plugins: {
-    '@typescript-eslint': typescript,
-    prettier: prettier,
-  },
-  rules: {
-    'prettier/prettier': 'error',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-  },
-}
-
-const jsConfig = {
-  files: ['**/*.{js,jsx}'],
-  languageOptions: {
-    globals: {
-      window: 'readonly',
-      document: 'readonly',
-    },
-  },
-  plugins: {
-    prettier: prettier,
-  },
-  rules: {
-    'prettier/prettier': 'error',
-  },
-}
-
-export default [
-  js.configs.recommended,
-  typescriptConfig,
-  jsConfig,
+export default tseslint.config(
+  { ignores: ['dist'] },
   {
-    ignores: ['dist/**', 'node_modules/**', 'build/**'],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
   },
-  eslintConfigPrettier,
-]
+)

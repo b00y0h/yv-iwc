@@ -1,3 +1,0 @@
-packages:
-  - 'testing'
-  - 'packages/*' # This includes all packages in the packages directory

@@ -1,28 +1,19 @@
 # @ux_bob/yv-iwc
 
-> React component for YouVisit IWC
+> A React component for embedding YouVisit Interactive Web Component (IWC)
 
-[![NPM](https://img.shields.io/npm/v/@ux_bob/yv-iwc.svg)](https://www.npmjs.com/package/@ux_bob/yv-iwc) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@ux_bob/yv-iwc.svg)](https://www.npmjs.com/package/@ux_bob/yv-iwc)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install from NPM
+## Installation
+
+You can install the package using npm or pnpm:
 
 ```bash
-npm install --save @ux_bob/yv-iwc
+npm install @ux_bob/yv-iwc
+# or
+pnpm add @ux_bob/yv-iwc
 ```
-
-## Test locally
-
-Run `pnpm dev` in this folder to watch for and build changes.
-
-`cd` into `testing` directory and run `npm run start` to start a react app that has the `YouVisitIWC` component.
-
-or go to your local project and run `pnpm link --global` in this folder to create the link and then `pnpm link --global @ux_bob/yv-iwc` in your other project to use that link.
-
-<!-- Go to `http://local.dev.youvisit.com:3000/` to see the IWC on a page. -->
-
-## Building and pushing to NPM
-
-Run `npm run publishToNpm`
 
 ## Usage
 
@@ -32,21 +23,55 @@ import { YouVisitIWC } from '@ux_bob/yv-iwc'
 
 const App = () => {
   return (
-    <div>
-      <YouVisitIWC
-        containerWidth="100%"
-        containerHeight="400px"
-        title="IWC Title"
-        institution={institutionId}
-        location={locationId}
-        showCode="true or blank"
-      />
-    </div>
+    <YouVisitIWC
+      containerWidth="100%"
+      containerHeight="400px"
+      title="Campus Tour"
+      institution="your-institution-id"
+      location="your-location-id"
+      showCode={true}
+    />
   )
 }
+
 export default App
 ```
 
-## License
+## Props
 
-MIT © [b00y0h](https://github.com/b00y0h)
+| Prop              | Type    | Required | Description                                           |
+| ----------------- | ------- | -------- | ----------------------------------------------------- |
+| `containerWidth`  | string  | Yes      | Width of the IWC container (e.g., "100%", "800px")    |
+| `containerHeight` | string  | Yes      | Height of the IWC container (e.g., "400px")           |
+| `title`           | string  | Yes      | Title of the IWC experience                           |
+| `institution`     | string  | Yes      | Institution ID for the YouVisit experience            |
+| `location`        | string  | Yes      | Location ID for the YouVisit experience               |
+| `showCode`        | boolean | No       | Whether to display the embed code (defaults to false) |
+
+## Development
+
+This repository contains both the main package and a Next.js testing app to validate the package functionality.
+
+### Package Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development build with watch mode
+npm run dev
+
+# Build the package
+npm run build
+```
+
+### Testing App
+
+The `testing` directory contains a Next.js app that uses the package locally for development and testing purposes.
+
+```bash
+# Run the test app
+npm run dev:test
+```
+
+This will start the Next.js development server with the local version of the package.
