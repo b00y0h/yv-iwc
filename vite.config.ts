@@ -8,12 +8,14 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'yvIWC',
-      fileName: (format: unknown) => `yv-iwc.${format}.js`,
+      fileName: (format: unknown) => `index.${format}.js`,
     },
+    cssCodeSplit: true,
   },
   optimizeDeps: {
     include: ['@ux_bob/yv-iwc'],
   },
+
   server: {
     fs: {
       allow: ['..'], // allow serving files from one directory up (the monorepo root)
