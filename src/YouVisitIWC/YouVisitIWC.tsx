@@ -63,11 +63,17 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
     iwcHeight,
   })
 
-  const dataAttributesString = generateDataAttributesString(anchorProps)
+  // Generate single-line version for copying
+  const dataAttributesStringSingle = generateDataAttributesString(anchorProps)
+  const codeStringCopy = `<div style="height: ${containerHeight}; width: ${containerWidth}"><a alt="Launch Experience" href="https://www.youvisit.com/#/vte/${dataAttributesStringSingle}">Virtual Tour</a></div>`
 
-  const codeString = `<div style="height: ${containerHeight}; width: ${containerWidth}">
-  <a alt="Launch Experience" href="https://www.youvisit.com/#/vte/
-${dataAttributesString}">
+  // Generate pretty version for display with each data attribute on its own line
+  const dataAttributesStringPretty = generateDataAttributesString(anchorProps, {
+    pretty: true,
+  })
+  const codeStringDisplay = `<div style="height: ${containerHeight}; width: ${containerWidth}">
+  <a alt="Launch Experience"
+     href="https://www.youvisit.com/#/vte/${dataAttributesStringPretty}">
     Virtual Tour
   </a>
 </div>`
@@ -91,7 +97,7 @@ ${dataAttributesString}">
           </h3>
           <div className={styles.codeSnippetContainer}>
             <div className={styles.copyButtonContainer}>
-              <CopyToClipboard textData={codeString} />
+              <CopyToClipboard textData={codeStringCopy} />
             </div>
             <SyntaxHighlighter
               language="html"
@@ -100,11 +106,12 @@ ${dataAttributesString}">
                 margin: '1rem 0',
                 borderRadius: '4px',
                 background: '#f5f5f5',
+                userSelect: 'none',
               }}
               wrapLines={true}
               wrapLongLines={true}
             >
-              {codeString.trim()}
+              {codeStringDisplay}
             </SyntaxHighlighter>
           </div>
 

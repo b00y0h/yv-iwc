@@ -78,16 +78,28 @@ export const generateAnchorProps = (props: {
   return baseProps
 }
 
+/**
+ * Generates the data attributes string for the embed URL.
+ * @param anchorProps AnchorProps object
+ * @param options.pretty If true, returns a multi-line string for display. If false, returns a single-line string for copying.
+ */
 export const generateDataAttributesString = (
-  anchorProps: AnchorProps
+  anchorProps: AnchorProps,
+  options?: { pretty?: boolean }
 ): string => {
   const entries = Object.entries(anchorProps).filter(([key]) =>
     key.startsWith('data-')
   )
 
-  return entries
-    .map(
-      ([key, value], index) => `    ${index === 0 ? '?' : '&'}${key}=${value}`
-    )
-    .join('\n')
+  if (options?.pretty) {
+    return entries
+      .map(
+        ([key, value], index) => `${index === 0 ? '?' : '    &'}${key}=${value}`
+      )
+      .join('\n')
+  } else {
+    return entries
+      .map(([key, value], index) => `${index === 0 ? '?' : '&'}${key}=${value}`)
+      .join('')
+  }
 }
