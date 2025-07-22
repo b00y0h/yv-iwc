@@ -54,7 +54,7 @@ This repository contains both the main package and a Next.js testing app to vali
 
 ### Package Development
 
-See Development.md file for instructions
+See Development.md file for instructions and deployment.md for deployment steps.
 
 ```bash
 # Install dependencies
