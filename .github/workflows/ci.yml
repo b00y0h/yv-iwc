@@ -46,7 +46,7 @@ jobs:
         run: pnpm run build
 
       - name: Build Next.js example
-        run: pnpm run build --filter testing
+        run: pnpm --filter testing build
 
   release:
     name: Release
@@ -73,6 +73,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Setup npm authentication
+        run: cat .npmrc.publish >> .npmrc
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

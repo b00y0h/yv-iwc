@@ -64,6 +64,9 @@ jobs:
           git commit -m "chore: version packages" || exit 0
           git push
 
+      - name: Setup npm authentication
+        run: cat .npmrc.publish >> .npmrc
+
       - name: Publish to npm
         run: pnpm run changeset:publish
         env:

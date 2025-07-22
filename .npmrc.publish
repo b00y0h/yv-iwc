@@ -1,0 +1,2 @@
+# Publishing configuration for CI/CD
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
