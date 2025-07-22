@@ -1,4 +1,4 @@
-name: Release
+name: Manual Release
 
 on:
   workflow_dispatch:
@@ -12,6 +12,10 @@ on:
           - patch
           - minor
           - major
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
@@ -50,7 +54,7 @@ jobs:
           echo "Manual release: ${{ github.event.inputs.version_type }} version bump" >> .changeset/manual-release.md
 
       - name: Version packages
-        run: pnpm run version
+        run: pnpm run changeset:version
 
       - name: Commit version changes
         run: |
@@ -61,6 +65,6 @@ jobs:
           git push
 
       - name: Publish to npm
-        run: pnpm run release
+        run: pnpm run changeset:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
