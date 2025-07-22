@@ -25,6 +25,9 @@
   ],
   "packageManager": "pnpm@9.3.0",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vitest",
     "dev:build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom --sourcemap --clean --out-dir dist --watch",
