@@ -54,6 +54,8 @@ This repository contains both the main package and a Next.js testing app to vali
 
 ### Package Development
 
+See Development.md file for instructions
+
 ```bash
 # Install dependencies
 pnpm install
