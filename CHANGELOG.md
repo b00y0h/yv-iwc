@@ -1,5 +1,11 @@
 # @ux_bob/yv-iwc
 
+## 2.1.2
+
+### Patch Changes
+
+- Manual release: patch version bump
+
 ## 2.1.1
 
 ### Patch Changes
