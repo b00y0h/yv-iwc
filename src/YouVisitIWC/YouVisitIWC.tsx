@@ -95,10 +95,7 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
           <h3>
             Place the HTML below anywhere on your page to display your IWC:
           </h3>
-          <div className={styles.codeSnippetContainer}>
-            <div className={styles.copyButtonContainer}>
-              <CopyToClipboard textData={codeStringCopy} />
-            </div>
+          <div style={{ position: 'relative', width: '100%' }}>
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
@@ -113,15 +110,15 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               {codeStringDisplay}
             </SyntaxHighlighter>
+            <div style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10 }}>
+              <CopyToClipboard textData={codeStringCopy} buttonTextPreCopy="Copy to clipboard" />
+            </div>
           </div>
 
           <h3>
             Place the script below anywhere on the same page as HTML above:
           </h3>
-          <div className={styles.codeSnippetContainer}>
-            <div className={styles.copyButtonContainer}>
-              <CopyToClipboard textData={codeString2} />
-            </div>
+          <div style={{ position: 'relative', width: '100%' }}>
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
@@ -135,6 +132,9 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               {codeString2.trim()}
             </SyntaxHighlighter>
+            <div style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10 }}>
+              <CopyToClipboard textData={codeString2} buttonTextPreCopy="Copy to clipboard" />
+            </div>
           </div>
         </>
       )}
