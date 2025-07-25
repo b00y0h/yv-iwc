@@ -131,6 +131,7 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
               <CopyToClipboard
                 textData={codeStringCopy}
                 buttonTextPreCopy="Copy to clipboard"
+                buttonClassName={copyButtonClassName}
               />
             </div>
           </div>
@@ -165,6 +166,7 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
               <CopyToClipboard
                 textData={codeString2}
                 buttonTextPreCopy="Copy to clipboard"
+                buttonClassName={copyButtonClassName}
               />
             </div>
           </div>

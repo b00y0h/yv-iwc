@@ -101,6 +101,35 @@
   border-color: #cbd5e1;
 }
 
+/* CopyToClipboard component styles */
+.yv-iwc-copy-to-clipboard-container {
+  /* Container styles if needed */
+}
+
+.yv-iwc-copy-to-clipboard-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.yv-iwc-copy-to-clipboard-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.yv-iwc-copy-to-clipboard-icon-copied {
+  color: #22c55e;
+  transform: scale(1.1);
+}
+
 .yv-iwc-select-all-container {
   margin-top: 0.5rem;
   display: flex;

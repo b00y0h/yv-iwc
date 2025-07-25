@@ -1,13 +1,18 @@
 import { FC, useState } from 'react'
+import { combineClasses } from '../utils'
 
 const CopyToClipboard: FC<{
   textData: string
   buttonTextPreCopy?: string
   buttonTextPostCopy?: string
+  className?: string
+  buttonClassName?: string
 }> = ({
   textData,
   buttonTextPreCopy = 'Copy to clipboard',
   buttonTextPostCopy = 'Copied!',
+  className,
+  buttonClassName,
 }) => {
   const [copied, setCopied] = useState(false)
 
@@ -59,21 +64,18 @@ const CopyToClipboard: FC<{
   }
 
   return (
-    <div>
+    <div
+      className={combineClasses(
+        'yv-iwc-copy-to-clipboard-container',
+        className
+      )}
+    >
       <button
         onClick={copyToClipboard}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '4px 8px',
-          backgroundColor: '#fff',
-          border: '1px solid #ddd',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          fontSize: '14px',
-          color: '#333',
-        }}
+        className={combineClasses(
+          'yv-iwc-copy-to-clipboard-button',
+          buttonClassName
+        )}
       >
         <span>{copied ? buttonTextPostCopy : buttonTextPreCopy}</span>
         <svg
@@ -82,13 +84,10 @@ const CopyToClipboard: FC<{
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          style={{
-            width: '16px',
-            height: '16px',
-            color: copied ? '#22c55e' : 'currentColor',
-            transition: 'transform 0.3s ease',
-            transform: copied ? 'scale(1.1)' : 'scale(1)',
-          }}
+          className={combineClasses(
+            'yv-iwc-copy-to-clipboard-icon',
+            copied ? 'yv-iwc-copy-to-clipboard-icon-copied' : ''
+          )}
         >
           {copied ? (
             <path
