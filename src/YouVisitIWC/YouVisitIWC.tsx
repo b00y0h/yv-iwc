@@ -10,7 +10,7 @@ import {
 } from './utils'
 import { useScript } from '../hooks/useScript'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { prism as coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import CopyToClipboard from './components/copy-to-clipboard'
 import './YouVisitIWC.css'
 

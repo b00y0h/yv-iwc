@@ -17,8 +17,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./dist/index.css": "./dist/index.css"
+    }
   },
   "sideEffects": [
     "*.css"
@@ -30,12 +29,12 @@
   },
   "scripts": {
     "dev": "vitest",
-    "dev:build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom --sourcemap --clean --out-dir dist --watch",
+    "dev:build": "tsup --watch",
     "dev:example": "pnpm --filter testing dev",
     "dev:all": "concurrently \"pnpm run dev:build\" \"pnpm run dev:example\"",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom --sourcemap --clean --out-dir dist",
+    "build": "tsup",
     "build:all": "pnpm run build && pnpm run build --filter testing",
     "lint": "tsc --noEmit",
     "lint:fix": "tsc --noEmit",

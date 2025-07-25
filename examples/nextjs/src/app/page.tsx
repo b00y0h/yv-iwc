@@ -1,7 +1,7 @@
 'use client'
 // import { YouVisitIWC } from '@ux_bob/yv-iwc'
 
-import { YouVisitIWC } from '../../../../dist/index.js'
+import { YouVisitIWC } from '@ux_bob/yv-iwc'
 
 export default function Home() {
   return (
