@@ -51,6 +51,12 @@ export interface YouVisitIWCProps {
   iwcWidth?: string
   iwcHeight?: string
   showCode?: boolean
+
+  // Styling customization props
+  className?: string // Main container
+  codeContainerClassName?: string // Code snippet containers
+  copyButtonClassName?: string // Copy to clipboard buttons
+  headingClassName?: string // Section headings
 }
 
 // This empty export makes this file a module

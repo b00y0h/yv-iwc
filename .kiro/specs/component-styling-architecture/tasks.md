@@ -7,7 +7,7 @@
   - Ensure all existing styles are preserved with new naming convention
   - _Requirements: 1.1, 1.2, 4.2_
 
-- [ ] 2. Update TypeScript interfaces for className props
+- [x] 2. Update TypeScript interfaces for className props
 
   - Add optional className props to YouVisitIWCProps interface
   - Define props for main container, code containers, copy buttons, and headings

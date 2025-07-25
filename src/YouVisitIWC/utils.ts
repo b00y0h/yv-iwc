@@ -1,20 +1,32 @@
 import { YV_SOURCE } from './config'
-import { YouVisitIWCProps } from './types'
+import { YouVisitIWCProps, JsonLdData } from './types'
 
 export const generateJsonLdData = (
   title: string,
   description: string,
   thumb?: string,
   uploadDate?: string
-) => {
+): JsonLdData => {
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: title,
     description,
     thumbnailUrl: thumb,
-    uploadDate,
+    uploadDate: uploadDate || new Date().toISOString(),
+    publisher: {
+      '@type': 'Organization' as const,
+      name: 'YouVisit',
+      logo: {
+        '@type': 'ImageObject' as const,
+        url: 'https://www.youvisit.com/logo.png',
+        width: 200,
+        height: 60,
+      },
+    },
+    contentUrl: YV_SOURCE,
     embedUrl: YV_SOURCE,
+    interactionCount: '0',
   }
 }
 
@@ -42,20 +54,18 @@ export const generateAnchorProps = ({
   | 'iwcWidth'
   | 'iwcHeight'
 >) => {
-  const props: Record<string, string | number> = {
-    'data-inst': institution,
-    'data-link-type': linkType,
-    'data-location': location,
-    'data-type': type,
-    'data-hover-width': hoverWidth,
-    'data-hover-height': hoverHeight,
-    'data-iwc-width': iwcWidth,
-    'data-iwc-height': iwcHeight,
-  }
+  const props: Record<string, string | number> = {}
 
-  if (stopId) {
-    props['data-stop'] = stopId
-  }
+  // Only add properties that have defined values
+  if (institution !== undefined) props['data-inst'] = institution
+  if (linkType !== undefined) props['data-link-type'] = linkType
+  if (location !== undefined) props['data-location'] = location
+  if (type !== undefined) props['data-type'] = type
+  if (hoverWidth !== undefined) props['data-hover-width'] = hoverWidth
+  if (hoverHeight !== undefined) props['data-hover-height'] = hoverHeight
+  if (iwcWidth !== undefined) props['data-iwc-width'] = iwcWidth
+  if (iwcHeight !== undefined) props['data-iwc-height'] = iwcHeight
+  if (stopId !== undefined) props['data-stop'] = stopId
 
   return props
 }
