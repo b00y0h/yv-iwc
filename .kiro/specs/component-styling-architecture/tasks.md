@@ -51,7 +51,7 @@
   - Create tests for the class combination utility function
   - _Requirements: 2.2, 2.3, 4.3_
 
-- [ ] 8. Update example Next.js application to test new styling
+- [x] 8. Update example Next.js application to test new styling
 
   - Test component with default styles in Next.js environment
   - Test custom className props and style overrides

@@ -1,24 +1,34 @@
-import React from 'react'
 import Link from 'next/link'
 
-const Navbar: React.FC = () => {
+export default function Navbar() {
   return (
-    <nav
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: '1rem',
-        background: '#f4f4f4',
-      }}
-    >
-      <Link href="/" style={{ textDecoration: 'none', color: 'black' }}>
-        Page 1
-      </Link>
-      <Link href="/2" style={{ textDecoration: 'none', color: 'black' }}>
-        Page 2
-      </Link>
+    <nav className="bg-white shadow-sm border-b border-gray-200 mb-8">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex items-center space-x-8">
+            <h1 className="text-xl font-semibold text-gray-900">
+              YouVisit IWC Test
+            </h1>
+            <div className="flex space-x-4">
+              <Link
+                href="/"
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Full Test Suite
+              </Link>
+              <Link
+                href="/2"
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Isolated Test
+              </Link>
+            </div>
+          </div>
+          <div className="text-sm text-gray-500">
+            Testing new styling architecture
+          </div>
+        </div>
+      </div>
     </nav>
   )
 }
-
-export default Navbar
