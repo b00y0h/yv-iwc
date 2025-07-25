@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-import styles from '../YouVisitIWC.module.css'
 
 const CopyToClipboard: FC<{
   textData: string
@@ -60,8 +59,22 @@ const CopyToClipboard: FC<{
   }
 
   return (
-    <div className={styles.container}>
-      <button onClick={copyToClipboard} className={styles.button}>
+    <div>
+      <button
+        onClick={copyToClipboard}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '4px 8px',
+          backgroundColor: '#fff',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontSize: '14px',
+          color: '#333',
+        }}
+      >
         <span>{copied ? buttonTextPostCopy : buttonTextPreCopy}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +82,13 @@ const CopyToClipboard: FC<{
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className={`${styles.icon} ${copied ? styles.iconSuccess : ''}`}
+          style={{
+            width: '16px',
+            height: '16px',
+            color: copied ? '#22c55e' : 'currentColor',
+            transition: 'transform 0.3s ease',
+            transform: copied ? 'scale(1.1)' : 'scale(1)',
+          }}
         >
           {copied ? (
             <path

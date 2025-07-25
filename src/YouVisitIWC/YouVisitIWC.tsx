@@ -8,7 +8,7 @@ import {
   generateDataAttributesString,
 } from './utils'
 import { useScript } from '../hooks/useScript'
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import CopyToClipboard from './components/copy-to-clipboard'
 import styles from './YouVisitIWC.module.css'
@@ -95,14 +95,13 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
           <h3>
             Place the HTML below anywhere on your page to display your IWC:
           </h3>
-          <div style={{ position: 'relative', width: '100%' }}>
+          <div className={styles.codeSnippetContainer}>
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
               customStyle={{
                 margin: '1rem 0',
                 borderRadius: '4px',
-                background: '#f5f5f5',
                 userSelect: 'none',
               }}
               wrapLines={true}
@@ -110,30 +109,35 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               {codeStringDisplay}
             </SyntaxHighlighter>
-            <div style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10 }}>
-              <CopyToClipboard textData={codeStringCopy} buttonTextPreCopy="Copy to clipboard" />
+            <div className={styles.copyButtonContainer}>
+              <CopyToClipboard
+                textData={codeStringCopy}
+                buttonTextPreCopy="Copy to clipboard"
+              />
             </div>
           </div>
 
           <h3>
             Place the script below anywhere on the same page as HTML above:
           </h3>
-          <div style={{ position: 'relative', width: '100%' }}>
+          <div className={styles.codeSnippetContainer}>
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
               customStyle={{
                 margin: '1rem 0',
                 borderRadius: '4px',
-                background: '#f5f5f5',
               }}
               wrapLines={true}
               wrapLongLines={true}
             >
               {codeString2.trim()}
             </SyntaxHighlighter>
-            <div style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10 }}>
-              <CopyToClipboard textData={codeString2} buttonTextPreCopy="Copy to clipboard" />
+            <div className={styles.copyButtonContainer}>
+              <CopyToClipboard
+                textData={codeString2}
+                buttonTextPreCopy="Copy to clipboard"
+              />
             </div>
           </div>
         </>

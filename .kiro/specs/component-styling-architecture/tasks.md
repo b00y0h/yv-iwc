@@ -1,6 +1,6 @@
 # Implementation Plan
 
-- [-] 1. Create CSS utility functions and new CSS file
+- [x] 1. Create CSS utility functions and new CSS file
 
   - Create a utility function for combining default and custom class names
   - Convert existing CSS module styles to a standard CSS file with semantic class names
