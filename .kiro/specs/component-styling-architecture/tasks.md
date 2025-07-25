@@ -14,7 +14,7 @@
   - Maintain backward compatibility with existing props
   - _Requirements: 2.2, 2.3, 4.1_
 
-- [ ] 3. Update main YouVisitIWC component implementation
+- [x] 3. Update main YouVisitIWC component implementation
 
   - Replace CSS module imports with standard CSS import
   - Update all className references to use semantic class names
@@ -31,26 +31,34 @@
 
 - [ ] 5. Update build configuration for CSS bundling
 
-  - Ensure CSS file is included in the library build output
+  - Configure tsup to include CSS files in the build output
+  - Update package.json exports to include CSS file export
   - Verify CSS is properly bundled and accessible to consumers
   - Test that styles are automatically injected when component is imported
   - _Requirements: 1.3, 3.4, 4.4_
 
-- [ ] 6. Create comprehensive tests for styling functionality
+- [ ] 6. Update CopyToClipboard component to use CSS classes
+
+  - Replace inline styles with CSS classes from YouVisitIWC.css
+  - Add className prop support for customization
+  - Maintain existing visual appearance and functionality
+  - _Requirements: 1.2, 2.1, 2.4_
+
+- [ ] 7. Create comprehensive tests for styling functionality
 
   - Write tests to verify default styles are applied correctly
   - Test className prop functionality and style overrides
   - Create tests for the class combination utility function
   - _Requirements: 2.2, 2.3, 4.3_
 
-- [ ] 7. Update example Next.js application to test new styling
+- [ ] 8. Update example Next.js application to test new styling
 
   - Test component with default styles in Next.js environment
   - Test custom className props and style overrides
   - Verify no additional CSS imports are required for basic functionality
   - _Requirements: 1.1, 1.3, 3.1_
 
-- [ ] 8. Clean up old CSS module files and references
+- [ ] 9. Clean up old CSS module files and references
   - Remove YouVisitIWC.module.css file
   - Clean up any remaining CSS module references
   - Update any documentation or comments referencing old approach

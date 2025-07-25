@@ -6,12 +6,13 @@ import {
   generateJsonLdData,
   generateAnchorProps,
   generateDataAttributesString,
+  combineClasses,
 } from './utils'
 import { useScript } from '../hooks/useScript'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkCold } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import CopyToClipboard from './components/copy-to-clipboard'
-import styles from './YouVisitIWC.module.css'
+import './YouVisitIWC.css'
 
 // Move language registration inside the component
 const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
@@ -31,6 +32,10 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
   iwcWidth = '100%',
   iwcHeight = '100%',
   showCode,
+  className,
+  codeContainerClassName,
+  copyButtonClassName,
+  headingClassName,
 }) => {
   const [isReady, setIsReady] = useState(false)
   const jsonLdData = generateJsonLdData(title, description, thumb, uploadDate)
@@ -83,7 +88,10 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
   return (
     <>
       <div
-        className={`${styles.codeSnippetContainer}${isReady ? ' ready' : ''}`}
+        className={combineClasses(
+          `yv-iwc-container${isReady ? ' ready' : ''}`,
+          className
+        )}
         style={{ width: containerWidth, height: containerHeight }}
       >
         <a className="virtualtour_embed" {...anchorProps}>
@@ -92,10 +100,15 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
       </div>
       {showCode && (
         <>
-          <h3>
+          <h3 className={combineClasses('yv-iwc-heading', headingClassName)}>
             Place the HTML below anywhere on your page to display your IWC:
           </h3>
-          <div className={styles.codeSnippetContainer}>
+          <div
+            className={combineClasses(
+              'yv-iwc-code-container',
+              codeContainerClassName
+            )}
+          >
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
@@ -109,7 +122,12 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               {codeStringDisplay}
             </SyntaxHighlighter>
-            <div className={styles.copyButtonContainer}>
+            <div
+              className={combineClasses(
+                'yv-iwc-copy-button-container',
+                copyButtonClassName
+              )}
+            >
               <CopyToClipboard
                 textData={codeStringCopy}
                 buttonTextPreCopy="Copy to clipboard"
@@ -117,10 +135,15 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             </div>
           </div>
 
-          <h3>
+          <h3 className={combineClasses('yv-iwc-heading', headingClassName)}>
             Place the script below anywhere on the same page as HTML above:
           </h3>
-          <div className={styles.codeSnippetContainer}>
+          <div
+            className={combineClasses(
+              'yv-iwc-code-container',
+              codeContainerClassName
+            )}
+          >
             <SyntaxHighlighter
               language="html"
               style={coldarkCold}
@@ -133,7 +156,12 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               {codeString2.trim()}
             </SyntaxHighlighter>
-            <div className={styles.copyButtonContainer}>
+            <div
+              className={combineClasses(
+                'yv-iwc-copy-button-container',
+                copyButtonClassName
+              )}
+            >
               <CopyToClipboard
                 textData={codeString2}
                 buttonTextPreCopy="Copy to clipboard"
