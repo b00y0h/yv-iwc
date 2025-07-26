@@ -3,7 +3,7 @@ import {
   combineClasses,
   generateJsonLdData,
   generateAnchorProps,
-} from './utils'
+} from '../../YouVisitIWC/utils'
 
 describe('Utils', () => {
   describe('combineClasses', () => {

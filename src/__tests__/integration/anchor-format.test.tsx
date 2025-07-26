@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { render } from '@testing-library/react'
-import YouVisitIWC from './YouVisitIWC'
+import YouVisitIWC from '../../YouVisitIWC/YouVisitIWC'
 
 describe('YouVisitIWC Anchor Format', () => {
   it('should render anchor element with ONLY href attribute (no data attributes)', () => {

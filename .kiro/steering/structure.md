@@ -15,9 +15,15 @@
 
 ```
 src/
-├── YouVisitIWC/           # Main component module
+├── __tests__/             # All test files organized by type
+│   ├── unit/              # Unit tests for functions and components
+│   ├── integration/       # Integration tests for component interactions
+│   ├── styling/           # CSS and styling-specific tests
+│   ├── setup/             # Test configuration and setup files
+│   └── README.md          # Test organization documentation
+├── YouVisitIWC/           # Main component module (clean, no tests)
 │   ├── YouVisitIWC.tsx    # Primary React component
-│   ├── YouVisitIWC.css     # Component-specific styles
+│   ├── YouVisitIWC.css    # Component-specific styles
 │   ├── types.ts           # TypeScript type definitions
 │   ├── config.ts          # Configuration constants
 │   ├── utils.ts           # Utility functions
@@ -34,6 +40,17 @@ src/
 └── index.ts               # Main library entry point
 ```
 
+## Test Structure (`tests/`)
+
+```
+tests/
+├── integration/           # Build and distribution tests
+│   ├── test-consumer-import.mjs    # ES module import tests
+│   ├── test-css-auto-import.mjs    # Auto CSS import tests
+│   └── test-css-import.js          # Manual CSS import tests
+└── README.md              # Integration test documentation
+```
+
 ## Examples Structure
 
 - `examples/nextjs/` - Next.js implementation example for testing and validation
@@ -45,6 +62,7 @@ src/
 - **Single Responsibility**: Each component has a focused purpose
 - **Co-location**: Component-specific styles and utilities are kept together
 - **Barrel Exports**: Clean public API through index.ts files
+- **Test Separation**: All tests are organized in dedicated `__tests__/` directory by type
 
 ### File Naming Conventions
 
@@ -53,6 +71,7 @@ src/
 - **Utilities**: camelCase (e.g., `utils.ts`)
 - **Types**: camelCase (e.g., `types.ts`)
 - **CSS Files**: Component name + `.css` with semantic class names
+- **Tests**: Component/utility name + `.test.ts/.tsx` organized by type in `__tests__/`
 
 ### Import/Export Strategy
 

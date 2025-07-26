@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import YouVisitIWC from './YouVisitIWC'
-import { combineClasses } from './utils'
+import YouVisitIWC from '../../YouVisitIWC/YouVisitIWC'
+import { combineClasses } from '../../YouVisitIWC/utils'
 
 // Mock the useScript hook
-vi.mock('../hooks/useScript', () => ({
+vi.mock('../../hooks/useScript', () => ({
   useScript: vi.fn(() => 'ready'),
 }))
 
