@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
 // Mock window.YVScript for tests
 Object.defineProperty(window, 'YVScript', {
