@@ -41,9 +41,9 @@ export function useScript(
     document.body.appendChild(script)
 
     const handleScriptLoad = () => {
-      console.log('YouVisit script loaded successfully:', src)
-      console.log('Current domain:', window.location.hostname)
-      console.log('YVScript available:', typeof window.YVScript !== 'undefined')
+      // console.log('YouVisit script loaded successfully:', src)
+      // console.log('Current domain:', window.location.hostname)
+      // console.log('YVScript available:', typeof window.YVScript !== 'undefined')
       if (typeof window.YVScript !== 'undefined') {
         console.log('YVScript methods:', Object.keys(window.YVScript))
       }

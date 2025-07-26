@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react'
 import { YV_SOURCE, DEFAULT_DESCRIPTION, DEFAULT_UPLOAD_DATE } from './config'
 import { YouVisitIWCProps } from './types'
@@ -49,11 +50,11 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
       typeof window !== 'undefined' &&
       window.YVScript
     ) {
-      console.log('YVScript ready, calling scanEmbeds')
-      console.log(
-        'Anchor elements found:',
-        document.querySelectorAll('.virtualtour_embed')
-      )
+      // console.log('YVScript ready, calling scanEmbeds')
+      // console.log(
+      //   'Anchor elements found:',
+      //   document.querySelectorAll('.virtualtour_embed')
+      // )
       window.YVScript.scanEmbeds()
       setIsReady(true)
     }
@@ -64,11 +65,11 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
     if (status === 'ready') {
       const timer = setTimeout(() => {
         if (typeof window !== 'undefined' && window.YVScript) {
-          console.log('Delayed scanEmbeds call')
-          console.log(
-            'Anchor elements found (delayed):',
-            document.querySelectorAll('.virtualtour_embed')
-          )
+          // console.log('Delayed scanEmbeds call')
+          // console.log(
+          //   'Anchor elements found (delayed):',
+          //   document.querySelectorAll('.virtualtour_embed')
+          // )
           window.YVScript.scanEmbeds()
 
           // Check if transformation happened
@@ -79,12 +80,12 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             const containers = document.querySelectorAll(
               '.youvisitInlineframeContainer'
             )
-            console.log('Transformation check:', {
-              iframes: iframes.length,
-              containers: containers.length,
-              anchorsRemaining:
-                document.querySelectorAll('.virtualtour_embed').length,
-            })
+            // console.log('Transformation check:', {
+            //   iframes: iframes.length,
+            //   containers: containers.length,
+            //   anchorsRemaining:
+            //     document.querySelectorAll('.virtualtour_embed').length,
+            // })
           }, 2000)
         }
       }, 1000)
@@ -135,27 +136,27 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
           title="Launch Experience"
           ref={(el) => {
             if (el) {
-              console.log('Anchor element mounted:', el)
-              console.log('Element class:', el.className)
-              console.log('Element in DOM:', document.contains(el))
-              console.log('Anchor attributes:', {
-                'data-inst': el.getAttribute('data-inst'),
-                'data-link-type': el.getAttribute('data-link-type'),
-                'data-loc': el.getAttribute('data-loc'),
-                'data-platform': el.getAttribute('data-platform'),
-                'data-type': el.getAttribute('data-type'),
-                'data-hover-width': el.getAttribute('data-hover-width'),
-                'data-hover-height': el.getAttribute('data-hover-height'),
-                'data-image-width': el.getAttribute('data-image-width'),
-                'data-image-height': el.getAttribute('data-image-height'),
-                href: el.getAttribute('href'),
-              })
-              console.log(
-                'All element attributes:',
-                Array.from(el.attributes)
-                  .map((attr) => `${attr.name}="${attr.value}"`)
-                  .join(' ')
-              )
+              // console.log('Anchor element mounted:', el)
+              // console.log('Element class:', el.className)
+              // console.log('Element in DOM:', document.contains(el))
+              // console.log('Anchor attributes:', {
+              //   'data-inst': el.getAttribute('data-inst'),
+              //   'data-link-type': el.getAttribute('data-link-type'),
+              //   'data-loc': el.getAttribute('data-loc'),
+              //   'data-platform': el.getAttribute('data-platform'),
+              //   'data-type': el.getAttribute('data-type'),
+              //   'data-hover-width': el.getAttribute('data-hover-width'),
+              //   'data-hover-height': el.getAttribute('data-hover-height'),
+              //   'data-image-width': el.getAttribute('data-image-width'),
+              //   'data-image-height': el.getAttribute('data-image-height'),
+              //   href: el.getAttribute('href'),
+              // })
+              // console.log(
+              //   'All element attributes:',
+              //   Array.from(el.attributes)
+              //     .map((attr) => `${attr.name}="${attr.value}"`)
+              //     .join(' ')
+              // )
 
               if (
                 status === 'ready' &&
@@ -164,11 +165,11 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
               ) {
                 // Try scanning immediately when element is mounted
                 setTimeout(() => {
-                  console.log('Scanning embeds after anchor mount')
-                  console.log(
-                    'Elements with virtualtour_embed class:',
-                    document.querySelectorAll('.virtualtour_embed').length
-                  )
+                  // console.log('Scanning embeds after anchor mount')
+                  // console.log(
+                  //   'Elements with virtualtour_embed class:',
+                  //   document.querySelectorAll('.virtualtour_embed').length
+                  // )
                   if (typeof window !== 'undefined' && window.YVScript) {
                     window.YVScript.scanEmbeds()
 
@@ -182,11 +183,11 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
                       const containers = document.querySelectorAll(
                         '.youvisitInlineframeContainer'
                       )
-                      console.log('After scanEmbeds:', {
-                        anchorsRemaining: stillAnchors.length,
-                        iframesCreated: iframes.length,
-                        containersCreated: containers.length,
-                      })
+                      // console.log('After scanEmbeds:', {
+                      //   anchorsRemaining: stillAnchors.length,
+                      //   iframesCreated: iframes.length,
+                      //   containersCreated: containers.length,
+                      // })
                     }, 1000)
                   }
                 }, 100)
