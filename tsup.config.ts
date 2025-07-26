@@ -8,16 +8,8 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   outDir: 'dist',
-  // Use CSS injection with local style-inject to avoid module resolution issues
-  injectStyle: (css) => `
-    (function() {
-      if (typeof document !== 'undefined') {
-        const style = document.createElement('style');
-        style.textContent = ${JSON.stringify(css)};
-        document.head.appendChild(style);
-      }
-    })();
-  `,
+  // Extract CSS to separate file instead of injecting
+  injectStyle: false,
   // Skip type checking for external modules
   skipNodeModulesBundle: true,
   // Ensure CSS files are included in the build
@@ -26,5 +18,20 @@ export default defineConfig({
   },
   onSuccess: async () => {
     console.log('Build completed successfully')
+    // Touch a file in the Next.js app to trigger hot reload
+    try {
+      const fs = await import('fs')
+      const path = await import('path')
+      const triggerFile = path.join(
+        process.cwd(),
+        'examples/nextjs/trigger-reload.js'
+      )
+      fs.writeFileSync(
+        triggerFile,
+        `// Auto-generated trigger file - ${Date.now()}\nexport const timestamp = ${Date.now()}`
+      )
+    } catch (error) {
+      // Ignore errors if the examples directory doesn't exist
+    }
   },
 })

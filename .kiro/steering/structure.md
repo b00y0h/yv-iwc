@@ -17,7 +17,7 @@
 src/
 ├── YouVisitIWC/           # Main component module
 │   ├── YouVisitIWC.tsx    # Primary React component
-│   ├── YouVisitIWC.module.css # Component-specific styles
+│   ├── YouVisitIWC.css     # Component-specific styles
 │   ├── types.ts           # TypeScript type definitions
 │   ├── config.ts          # Configuration constants
 │   ├── utils.ts           # Utility functions
@@ -52,7 +52,7 @@ src/
 - **Hooks**: camelCase with "use" prefix (e.g., `useScript.ts`)
 - **Utilities**: camelCase (e.g., `utils.ts`)
 - **Types**: camelCase (e.g., `types.ts`)
-- **CSS Modules**: Component name + `.module.css`
+- **CSS Files**: Component name + `.css` with semantic class names
 
 ### Import/Export Strategy
 

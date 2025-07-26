@@ -229,7 +229,7 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
             >
               <CopyToClipboard
                 textData={codeStringCopy}
-                buttonTextPreCopy="Copy to clipboard"
+                // buttonTextPreCopy="Copy too clipboard"
                 buttonClassName={copyButtonClassName}
               />
             </div>

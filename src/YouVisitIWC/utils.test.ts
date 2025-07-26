@@ -63,9 +63,9 @@ describe('Utils', () => {
       expect(resultWithSpaces).toBe('default  class custom  class')
     })
 
-    it('should work with CSS module-style class names', () => {
-      const result = combineClasses('module_class_abc123', 'custom-override')
-      expect(result).toBe('module_class_abc123 custom-override')
+    it('should work with semantic class names', () => {
+      const result = combineClasses('yv-iwc-container', 'custom-override')
+      expect(result).toBe('yv-iwc-container custom-override')
     })
 
     it('should work with BEM-style class names', () => {

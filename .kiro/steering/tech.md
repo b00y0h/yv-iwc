@@ -14,7 +14,7 @@
 - **Language**: TypeScript (v5.7.3) with strict mode enabled
 - **Framework**: React 18+ (peer dependency, supports React 19)
 - **Module System**: ESNext with ESM/CJS dual builds
-- **CSS**: CSS Modules for component styling
+- **CSS**: Standard CSS files with semantic class names for component styling
 
 ## Key Dependencies
 
