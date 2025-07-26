@@ -1,5 +1,11 @@
 # @ux_bob/yv-iwc
 
+## 3.0.1
+
+### Patch Changes
+
+- 4eee526: remove console logs
+
 ## 3.0.0
 
 ### Major Changes
