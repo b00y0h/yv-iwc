@@ -3,7 +3,6 @@ import {
   combineClasses,
   generateJsonLdData,
   generateAnchorProps,
-  generateDataAttributesString,
 } from './utils'
 
 describe('Utils', () => {
@@ -144,15 +143,7 @@ describe('Utils', () => {
       })
 
       expect(result).toEqual({
-        'data-inst': 123,
-        'data-link-type': 'immersive',
-        'data-location': 456,
-        'data-type': 'inline-embed',
-        'data-stop': 'stop123',
-        'data-hover-width': '90%',
-        'data-hover-height': '70%',
-        'data-iwc-width': '100%',
-        'data-iwc-height': '100%',
+        href: 'https://www.youvisit.com/#/vte/?data-inst=123&data-link-type=immersive&data-loc=456&data-platform=v&data-type=inline-embed&data-hover-width=90%25&data-hover-height=70%25&data-image-width=100%25&data-image-height=100%25&data-stop=stop123',
       })
     })
 
@@ -171,48 +162,10 @@ describe('Utils', () => {
       })
 
       expect(result).toEqual({
-        'data-inst': 123,
-        'data-link-type': 'immersive',
-        'data-type': 'inline-embed',
-        'data-hover-width': '90%',
-        'data-hover-height': '70%',
-        'data-iwc-width': '100%',
-        'data-iwc-height': '100%',
+        href: 'https://www.youvisit.com/#/vte/?data-inst=123&data-link-type=immersive&data-platform=v&data-type=inline-embed&data-hover-width=90%25&data-hover-height=70%25&data-image-width=100%25&data-image-height=100%25',
       })
-      expect(result).not.toHaveProperty('data-location')
-      expect(result).not.toHaveProperty('data-stop')
-    })
-  })
-
-  describe('generateDataAttributesString', () => {
-    const sampleProps = {
-      'data-inst': 123,
-      'data-link-type': 'immersive',
-      'data-location': 456,
-    }
-
-    it('should generate single-line format by default', () => {
-      const result = generateDataAttributesString(sampleProps)
-      expect(result).toBe(
-        'data-inst=123&data-link-type=immersive&data-location=456'
-      )
-    })
-
-    it('should generate pretty format when requested', () => {
-      const result = generateDataAttributesString(sampleProps, { pretty: true })
-      expect(result).toBe(
-        'data-inst=123\n     data-link-type=immersive\n     data-location=456'
-      )
-    })
-
-    it('should handle empty props object', () => {
-      const result = generateDataAttributesString({})
-      expect(result).toBe('')
-    })
-
-    it('should handle single property', () => {
-      const result = generateDataAttributesString({ 'data-inst': 123 })
-      expect(result).toBe('data-inst=123')
+      // Should only have href property
+      expect(Object.keys(result)).toEqual(['href'])
     })
   })
 })

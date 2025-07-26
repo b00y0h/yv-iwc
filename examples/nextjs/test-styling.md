@@ -15,7 +15,8 @@
 **Description:** Component renders with complete default styling without additional CSS imports
 **Verification:**
 
-- Component displays properly styled virtual tour embed
+- Component displays interactive virtual tour embed (institution: 61112, location: 144661)
+- YouVisit script loads and transforms anchor elements into interactive tours
 - Code snippets have proper syntax highlighting
 - Copy buttons are positioned and styled correctly
 - No additional CSS imports required beyond component import

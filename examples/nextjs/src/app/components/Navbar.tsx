@@ -22,6 +22,18 @@ export default function Navbar() {
               >
                 Isolated Test
               </Link>
+              <Link
+                href="/debug"
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Debug
+              </Link>
+              <Link
+                href="/simple-test"
+                className="text-blue-600 hover:text-blue-800 font-medium"
+              >
+                Simple Test
+              </Link>
             </div>
           </div>
           <div className="text-sm text-gray-500">

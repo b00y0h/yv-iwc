@@ -5,7 +5,6 @@ import JsonLd from './components/JsonLd'
 import {
   generateJsonLdData,
   generateAnchorProps,
-  generateDataAttributesString,
   combineClasses,
 } from './utils'
 import { useScript } from '../hooks/useScript'
@@ -50,8 +49,46 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
       typeof window !== 'undefined' &&
       window.YVScript
     ) {
+      console.log('YVScript ready, calling scanEmbeds')
+      console.log(
+        'Anchor elements found:',
+        document.querySelectorAll('.virtualtour_embed')
+      )
       window.YVScript.scanEmbeds()
       setIsReady(true)
+    }
+  }, [status])
+
+  // Additional effect to try scanning embeds after a delay
+  useEffect(() => {
+    if (status === 'ready') {
+      const timer = setTimeout(() => {
+        if (typeof window !== 'undefined' && window.YVScript) {
+          console.log('Delayed scanEmbeds call')
+          console.log(
+            'Anchor elements found (delayed):',
+            document.querySelectorAll('.virtualtour_embed')
+          )
+          window.YVScript.scanEmbeds()
+
+          // Check if transformation happened
+          setTimeout(() => {
+            const iframes = document.querySelectorAll(
+              'iframe[id^="virtualtour_iframe"]'
+            )
+            const containers = document.querySelectorAll(
+              '.youvisitInlineframeContainer'
+            )
+            console.log('Transformation check:', {
+              iframes: iframes.length,
+              containers: containers.length,
+              anchorsRemaining:
+                document.querySelectorAll('.virtualtour_embed').length,
+            })
+          }, 2000)
+        }
+      }, 1000)
+      return () => clearTimeout(timer)
     }
   }, [status])
 
@@ -68,17 +105,15 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
     iwcHeight,
   })
 
-  // Generate single-line version for copying
-  const dataAttributesStringSingle = generateDataAttributesString(anchorProps)
-  const codeStringCopy = `<div style="height: ${containerHeight}; width: ${containerWidth}"><a alt="Launch Experience" href="https://www.youvisit.com/#/vte/${dataAttributesStringSingle}">Virtual Tour</a></div>`
+  // Generate code strings for display
+  const { href } = anchorProps
 
-  // Generate pretty version for display with each data attribute on its own line
-  const dataAttributesStringPretty = generateDataAttributesString(anchorProps, {
-    pretty: true,
-  })
+  // Generate single-line version for copying
+  const codeStringCopy = `<div style="height: ${containerHeight}; width: ${containerWidth}"><a href="${href}">Virtual Tour</a></div>`
+
+  // Generate pretty version for display
   const codeStringDisplay = `<div style="height: ${containerHeight}; width: ${containerWidth}">
-  <a alt="Launch Experience"
-     href="https://www.youvisit.com/#/vte/${dataAttributesStringPretty}">
+  <a href="${href}">
     Virtual Tour
   </a>
 </div>`
@@ -94,7 +129,71 @@ const YouVisitIWC: React.FC<YouVisitIWCProps> = ({
         )}
         style={{ width: containerWidth, height: containerHeight }}
       >
-        <a className="virtualtour_embed" {...anchorProps}>
+        <a
+          className="virtualtour_embed"
+          {...anchorProps}
+          title="Launch Experience"
+          ref={(el) => {
+            if (el) {
+              console.log('Anchor element mounted:', el)
+              console.log('Element class:', el.className)
+              console.log('Element in DOM:', document.contains(el))
+              console.log('Anchor attributes:', {
+                'data-inst': el.getAttribute('data-inst'),
+                'data-link-type': el.getAttribute('data-link-type'),
+                'data-loc': el.getAttribute('data-loc'),
+                'data-platform': el.getAttribute('data-platform'),
+                'data-type': el.getAttribute('data-type'),
+                'data-hover-width': el.getAttribute('data-hover-width'),
+                'data-hover-height': el.getAttribute('data-hover-height'),
+                'data-image-width': el.getAttribute('data-image-width'),
+                'data-image-height': el.getAttribute('data-image-height'),
+                href: el.getAttribute('href'),
+              })
+              console.log(
+                'All element attributes:',
+                Array.from(el.attributes)
+                  .map((attr) => `${attr.name}="${attr.value}"`)
+                  .join(' ')
+              )
+
+              if (
+                status === 'ready' &&
+                typeof window !== 'undefined' &&
+                window.YVScript
+              ) {
+                // Try scanning immediately when element is mounted
+                setTimeout(() => {
+                  console.log('Scanning embeds after anchor mount')
+                  console.log(
+                    'Elements with virtualtour_embed class:',
+                    document.querySelectorAll('.virtualtour_embed').length
+                  )
+                  if (typeof window !== 'undefined' && window.YVScript) {
+                    window.YVScript.scanEmbeds()
+
+                    // Check if transformation happened
+                    setTimeout(() => {
+                      const stillAnchors =
+                        document.querySelectorAll('.virtualtour_embed')
+                      const iframes = document.querySelectorAll(
+                        'iframe[id^="virtualtour_iframe"]'
+                      )
+                      const containers = document.querySelectorAll(
+                        '.youvisitInlineframeContainer'
+                      )
+                      console.log('After scanEmbeds:', {
+                        anchorsRemaining: stillAnchors.length,
+                        iframesCreated: iframes.length,
+                        containersCreated: containers.length,
+                      })
+                    }, 1000)
+                  }
+                }, 100)
+              }
+            }
+          }}
+        >
           Virtual Tour
         </a>
       </div>

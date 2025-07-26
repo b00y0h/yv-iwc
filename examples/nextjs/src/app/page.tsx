@@ -26,8 +26,8 @@ export default function Home() {
               containerWidth="100%"
               containerHeight="400px"
               title="University of Oklahoma Online - Default Styles"
-              institution={139387}
-              location={144388}
+              institution={61112}
+              location={144661}
               showCode={true}
             />
           </div>
@@ -47,8 +47,8 @@ export default function Home() {
               containerWidth="100%"
               containerHeight="400px"
               title="University of Oklahoma Online - Custom Styles"
-              institution={139387}
-              location={144388}
+              institution={61112}
+              location={144661}
               showCode={true}
               className="custom-main-container"
               codeContainerClassName="custom-code-container"
@@ -72,8 +72,8 @@ export default function Home() {
               containerWidth="100%"
               containerHeight="400px"
               title="University of Oklahoma Online - Partial Custom"
-              institution={139387}
-              location={144388}
+              institution={61112}
+              location={144661}
               showCode={true}
               headingClassName="partial-custom-heading"
               copyButtonClassName="partial-custom-button"

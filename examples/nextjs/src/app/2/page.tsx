@@ -35,8 +35,8 @@ export default function IsolatedTest() {
             containerWidth="100%"
             containerHeight="400px"
             title="University of Oklahoma Online - Isolated Test"
-            institution={139387}
-            location={144388}
+            institution={61112}
+            location={144661}
             showCode={true}
           />
         </div>

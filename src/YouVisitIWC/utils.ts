@@ -31,6 +31,7 @@ export const generateJsonLdData = (
 }
 
 export const generateAnchorProps = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
   institution,
   linkType,
@@ -54,32 +55,24 @@ export const generateAnchorProps = ({
   | 'iwcWidth'
   | 'iwcHeight'
 >) => {
-  const props: Record<string, string | number> = {}
+  // Generate href URL with all parameters - NO data attributes on the element
+  const urlParams = new URLSearchParams()
+  if (institution !== undefined)
+    urlParams.set('data-inst', institution.toString())
+  if (linkType !== undefined) urlParams.set('data-link-type', linkType)
+  if (location !== undefined) urlParams.set('data-loc', location.toString())
+  urlParams.set('data-platform', 'v')
+  if (type !== undefined) urlParams.set('data-type', type)
+  if (hoverWidth !== undefined) urlParams.set('data-hover-width', hoverWidth)
+  if (hoverHeight !== undefined) urlParams.set('data-hover-height', hoverHeight)
+  if (iwcWidth !== undefined) urlParams.set('data-image-width', iwcWidth)
+  if (iwcHeight !== undefined) urlParams.set('data-image-height', iwcHeight)
+  if (stopId !== undefined) urlParams.set('data-stop', stopId)
 
-  // Only add properties that have defined values
-  if (institution !== undefined) props['data-inst'] = institution
-  if (linkType !== undefined) props['data-link-type'] = linkType
-  if (location !== undefined) props['data-location'] = location
-  if (type !== undefined) props['data-type'] = type
-  if (hoverWidth !== undefined) props['data-hover-width'] = hoverWidth
-  if (hoverHeight !== undefined) props['data-hover-height'] = hoverHeight
-  if (iwcWidth !== undefined) props['data-iwc-width'] = iwcWidth
-  if (iwcHeight !== undefined) props['data-iwc-height'] = iwcHeight
-  if (stopId !== undefined) props['data-stop'] = stopId
-
-  return props
-}
-
-export const generateDataAttributesString = (
-  anchorProps: Record<string, string | number>,
-  options: { pretty?: boolean } = {}
-) => {
-  const { pretty = false } = options
-  const separator = pretty ? '\n     ' : '&'
-
-  return Object.entries(anchorProps)
-    .map(([key, value]) => `${key}=${value}`)
-    .join(separator)
+  // Return ONLY the href - no data attributes
+  return {
+    href: `https://www.youvisit.com/#/vte/?${urlParams.toString()}`,
+  }
 }
 
 /**
