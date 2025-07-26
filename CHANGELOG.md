@@ -1,5 +1,11 @@
 # @ux_bob/yv-iwc
 
+## 3.0.0
+
+### Major Changes
+
+- 7042e58: major update to how component works
+
 ## 2.1.2
 
 ### Patch Changes
